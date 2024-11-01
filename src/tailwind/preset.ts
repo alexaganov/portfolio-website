@@ -24,6 +24,23 @@ import { OptionalConfig } from 'tailwindcss/types/config';
 
 // --border-primary: #252525;
 // --border-secondary: #434343;
+
+const colors = {
+  'bg-primary': '#000',
+  'bg-secondary': '#0F0F0F',
+  'text-primary': '#fff',
+  'text-secondary': '#CDCDCD',
+  'text-tertiary': '#858585',
+  'border-primary': '#252525',
+  'border-secondary': '#434343',
+  'success': {
+    DEFAULT: '#80FF7E',
+  },
+  info: {
+    DEFAULT: '#68C8FF',
+  }
+}
+
 const config: Partial<OptionalConfig> = {
   theme: {
     extend: {
@@ -38,7 +55,8 @@ const config: Partial<OptionalConfig> = {
       textColor: {
         primary: '#fff',
         secondary: '#CDCDCD',
-        tertiary: '#858585'
+        tertiary: '#858585',
+        'bg-primary': '#000',
       },
       backgroundColor: {
         primary: '#000',
@@ -46,8 +64,10 @@ const config: Partial<OptionalConfig> = {
       },
       borderColor: {
         primary: '#252525',
-        secondary: '#434343'
-      }
+        secondary: '#434343',
+        'text-primary': '#fff',
+        'text-secondary': '#CDCDCD',
+      },
     },
     fontFamily: {
       // variables defined in layout file
@@ -61,7 +81,7 @@ const config: Partial<OptionalConfig> = {
         "::selection": {
           'mix-blend-mode': 'darken',
           'background-clip': 'text',
-          color: '#000',
+          color: colors['bg-primary'],
           backgroundColor: "rgba(255, 255, 255, 0.6)",
         }
       })
