@@ -4,12 +4,16 @@ import { Email } from '@/components/icons/mono/Email';
 import { Linkedin } from '@/components/icons/mono/Linkedin';
 import { NoImage } from '@/components/icons/mono/NoImage';
 import { Telegram } from '@/components/icons/mono/Telegram';
-import { getCompanyLogoById, resume, ResumeData } from '@/data';
+import { getCompanyLogoById, resume, ResumeData, ResumeDataTechnology } from '@/data';
 import clsx from 'clsx';
-import React, { ComponentPropsWithRef, ComponentType, lazy } from 'react'
+import React, { ComponentPropsWithRef, ComponentType, lazy, ReactNode } from 'react'
 import HomePageSections from './HomePageSections';
 import SectionNavProvider, { SectionNavSection, useSectionNav } from './SectionNavProvider';
 import MainNavDesktop from './MainNavDesktop';
+import MainNavMobile from './MainNavMobile';
+import SkillsSectionContent from './SkillsSectionContent';
+import ExperienceSectionContent from './ExperienceSectionContent';
+import AboutSectionContent from './AboutSectionContent';
 
 
 const getContactsList = (): {
@@ -40,104 +44,6 @@ const getContactsList = (): {
   ]
 }
 
-const AboutSectionContent = () => {
-  return (
-    <div className='space-y-6 leading-[1.75] text-tertiary font-light'>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-    </div>
-  )
-}
-
-const formatDate = (date: Date | number | string) => {
-  return new Intl.DateTimeFormat('en', {
-    month: 'short',
-    year: 'numeric'
-  }).format(new Date(date))
-}
-
-const ExperienceSectionContent = () => {
-  const skillById = resume.technologies.reduce((acc, skill) => {
-    acc[skill.id] = skill;
-
-    return acc;
-  }, {} as Record<string, ResumeData['technologies'][number]>)
-
-  return (
-    <ul className='flex flex-col gap-10'>
-      {resume.experience.map((experience) => {
-        const Icon = getCompanyLogoById(experience.id) || NoImage;
-        const isNoImage = Icon === NoImage;
-
-        return (
-          <li key={experience.id} className="flex gap-4">
-            <span className={clsx("flex items-center size-9 justify-center rounded-lg border border-primary flex-shrink-0", {
-              "text-tertiary": isNoImage
-            })}>
-              <Icon className='size-5' />
-            </span>
-
-            <div className="flex flex-col gap-3 pt-1">
-              <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-bold">
-                  {experience.websiteUrl && (
-                    <a
-                      href={experience.websiteUrl}
-                      className="group inline-flex items-center hover:underline gap-1.5"
-                      target="_blank"
-                    >
-                      {experience.companyName}
-
-                      <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
-                  )}
-
-                  {!experience.websiteUrl && experience.companyName}
-                </h3>
-
-                <div className="flex justify-between items-baseline flex-wrap gap-1">
-                  <p>{experience.position}</p>
-                  <span className="font-mono text-tertiary text-xs uppercase">
-                    {formatDate(experience.startedAt)} -{" "}
-                    {experience.endedAt
-                      ? formatDate(experience.endedAt)
-                      : "present"}
-                  </span>
-                </div>
-              </div>
-
-              <div className="leading-[1.75] text-tertiary font-light">
-                {experience.description}
-              </div>
-
-              <ul
-                aria-label="Technologies used"
-                className="flex flex-wrap gap-2"
-              >
-                {experience.technologyIds.map((skillId) => {
-                  return (
-                    <li
-                      key={skillId}
-                      className="rounded-full hover:text-primary hover:border-secondary transition-colors inline-flex font-mono gap-1.5 select-none items-center border border-primary text-tertiary px-2.5 py-1 min-h-7 text-xs"
-                    >
-                      {skillById[skillId]?.name || skillId}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
-  )
-}
-
 type ContactsListProps =ComponentPropsWithRef<"nav"> & {
   items: {
     Icon: ComponentType<{ className?: string }>;
@@ -150,7 +56,7 @@ type ContactsListProps =ComponentPropsWithRef<"nav"> & {
 const ContactsList = ({ items, ...props}: ContactsListProps) => {
   return (
     <nav {...props}>
-      <ul className="flex flex-wrap-reverse gap-x-6 gap-y-1.5">
+      <ul className="flex flex-wrap gap-x-6 gap-y-1.5">
         {items.map(({ id, name, Icon, url }) => {
           return (
             <li key={id}>
@@ -179,11 +85,13 @@ const sections: SectionNavSection[] = [
   {
     id: 'experience',
     name: 'Experience',
+    shortName: 'Exp',
     Content: ExperienceSectionContent
   },
   {
     id: 'skills',
     name: 'Skills',
+    Content: SkillsSectionContent
   }
 ];
 
@@ -192,11 +100,15 @@ export const HomePage = () => {
 
   return (
     <SectionNavProvider sections={sections}>
-      <main className="relative grid grid-cols-2">
-        <header className="h-screen sticky flex flex-col justify-end top-0">
-          <div className="max-h-20 flex-shrink h-full" />
-          <div className="flex h-full flex-col justify-between max-w-[600px] p-10">
-            <div>
+      <main className="relative lg:grid lg:grid-cols-2">
+        <header
+          id="header"
+          className={clsx(
+            "min-h-screen lg:h-screen items-center flex lg:sticky flex-col lg:top-0"
+          )}
+        >
+          <div className="flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-8 max-w-[600px] sm:gap-8 lg:pb-14 lg:pt-[7.5rem] lg:justify-between lg:ml-auto">
+            <div className='flex flex-col items-start'>
               <span className="rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs mb-3.5">
                 <span className="relative flex text-success h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
@@ -205,27 +117,49 @@ export const HomePage = () => {
                 available for hire
               </span>
 
-              <h1 className="uppercase font-bold text-4xl tracking-wider mb-2">
+              <h1 className="uppercase font-bold  text-2xl sm:text-4xl tracking-wider sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
                 {resume.firstName} {resume.lastName}
               </h1>
 
-              <p className="capitalize text-2xl mb-6">{resume.position}</p>
-
-              <p className="leading-[1.75] text-secondary font-light">
-                {resume.shortDescription}
+              <p className="capitalize text-lg mb-4 sm:text-2xl sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
+                {resume.position}
               </p>
+
+              <p
+                className="leading-[1.75] text-text-secondary font-light"
+                dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
+              />
             </div>
 
-            <MainNavDesktop className="my-10" />
+            <ContactsList
+              aria-label="Contacts"
+              items={contacts}
+            />
 
-            <ContactsList aria-label="Contacts" items={contacts} />
+            <MainNavDesktop className="mt-auto max-lg:hidden" />
           </div>
         </header>
 
-        <div className="bg-secondary flex flex-col rounded-l-xl">
-          <HomePageSections className="max-w-[600px] px-10" />
+        <div className="bg-secondary relative items-center flex flex-col rounded-t-xl lg:rounded-l-xl">
+          <div className='max-lg:hidden sticky top-0 pointer-events-none w-full h-0'>
+            <div className='h-[8.5rem] bg-gradient-to-t from-transparent to-bg-secondary' />
+          </div>
+
+          <HomePageSections
+            sectionClassName="pt-14 md:pt-20 last:min-h-screen last:max-lg:pb-[8.5rem] lg:pt-[10.125rem]"
+            className="max-w-[600px] lg:mr-auto px-5 md:px-10"
+          />
+
+          <div className='max-lg:hidden sticky bottom-0 pointer-events-none w-full h-0'>
+            <div className='h-[8.5rem] -translate-y-full bg-gradient-to-b from-transparent to-bg-secondary' />
+          </div>
         </div>
       </main>
+
+      <div className="fixed bottom-0 w-full h-24 flex items-center lg:hidden">
+        <div className="absolute w-full h-full left-0 z-0 top-0 bg-gradient-to-b from-transparent to-bg-primary" />
+        <MainNavMobile className="relative w-full max-w-[600px] px-5 md:px-10 mx-auto" />
+      </div>
     </SectionNavProvider>
   );
 }

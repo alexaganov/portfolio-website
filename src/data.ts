@@ -4,17 +4,11 @@ import { SagirovLogo } from "./components/icons/mono/SagirovLogo";
 import { FojinLogo } from "./components/icons/poly/FojinLogo";
 import { MagicSquareLogo } from "./components/icons/poly/MagicSquareLogo";
 
-const TECHNOLOGY_TYPE = {
-  PROGRAMMING_LANGUAGE: 'PROGRAMMING_LANGUAGE',
-  LIBRARY: 'LIBRARY',
-  MONOREPO: 'MONOREPO',
-  STYLE_SHEET_LANGUAGE: 'STYLE_SHEET_LANGUAGE',
-  MARKUP_LANGUAGE: 'MARKUP_LANGUAGE',
-} as const
-
-type TechnologyTypeName = keyof typeof TECHNOLOGY_TYPE;
-
-type TechnologyType = typeof TECHNOLOGY_TYPE[TechnologyTypeName];
+export interface ResumeDataTechnology {
+  id: string;
+  name: string;
+  description: string;
+};
 
 export interface ResumeData {
   firstName: string;
@@ -37,11 +31,7 @@ export interface ResumeData {
     description: string;
     technologyIds: string[];
   }[];
-  technologies: {
-    id: string;
-    name: string;
-    type: TechnologyType;
-  }[]
+  technologies: ResumeDataTechnology[]
 }
 
 const COMPANY_LOGO_BY_ID = {
@@ -59,7 +49,8 @@ export const resume: ResumeData = {
   firstName: 'Aleksandr',
   lastName: 'Aganov',
   isAvailableForHire: true,
-  shortDescription: 'I build some good shit that everyone deserves. Hire me and you will never forget how amazing stuff I build. Every time when you will interact with my UI you will cum with buckets',
+  shortDescription: 'I create accessible, user-friendly UIs across all platforms, ensuring&nbsp;a&nbsp;smooth and enjoyable experience for every user',
+  // <br />For this, I primarily use React, TypeScript, Tailwind, and Next.js, along with other modern technologies.<br/>I also specialize in building solutions for Web3.
   position: 'Senior Frontend Engineer',
   email: 'aganov.dev@gmail.com',
   socialHandles: {
@@ -75,7 +66,7 @@ export const resume: ResumeData = {
       startedAt: '2022-12-31T16:00:00.000Z',
       endedAt: '2024-09-30T16:00:00.000Z',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'react-query', 'nextjs', 'web3', 'web3js', 'ethersjs', 'wagmi', 'figma', 'mui', 'shadcn', 'dapps', 'javascript', 'nx', 'vite', 'radix-ui', 'css', 'scss', 'git', 'tailwind', 'html']
+      technologyIds: ['typescript', 'react', 'react-query', 'nextjs', 'web3', 'web3js', 'ethersjs', 'wagmi', 'figma', 'mui', 'shadcn', 'dapps', 'javascript', 'nx', 'vite', 'radixui', 'css', 'scss', 'git', 'tailwind', 'html', 'gitlab']
     },
     {
       id: 'fojin',
@@ -85,7 +76,7 @@ export const resume: ResumeData = {
       startedAt: '2021-03-31T16:00:00.000Z',
       endedAt: '2022-12-31T16:00:00.000Z',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'nextjs', 'mui', 'web3', 'ethersjs', 'figma', 'dapps', 'javascript', 'styled-components', 'css', 'scss', 'git', 'redux', 'redux-toolkit', 'html']
+      technologyIds: ['typescript', 'react', 'nextjs', 'mui', 'web3', 'ethersjs', 'figma', 'dapps', 'javascript', 'styled-components', 'css', 'scss', 'git', 'redux', 'redux-toolkit', 'html', 'github']
     },
     {
       id: 'sagirov',
@@ -95,7 +86,7 @@ export const resume: ResumeData = {
       startedAt: '2019-04-30T16:00:00.000Z',
       endedAt: '2021-02-28T16:00:00.000Z',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'nextjs', 'gsap', 'bootstrap', 'figma', 'javascript', 'css', 'scss', 'git', 'redux', 'html']
+      technologyIds: ['typescript', 'react', 'nextjs', 'gsap', 'bootstrap', 'figma', 'javascript', 'css', 'scss', 'git', 'redux', 'html', 'github']
     },
     {
       id: 'freelance',
@@ -104,54 +95,204 @@ export const resume: ResumeData = {
       startedAt: '2016-05-31T16:00:00.000Z',
       endedAt: '2019-04-30T16:00:00.000Z',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['javascript', 'vuejs', 'react', 'nodejs', 'php', 'wordpress', 'joomla', 'pug', 'bootstrap', 'css', 'scss', 'git', 'redux', 'html']
+      technologyIds: ['javascript', 'vuejs', 'react', 'nodejs', 'php', 'wordpress', 'joomla', 'pug', 'bootstrap', 'css', 'scss', 'git', 'redux', 'html', 'github']
     },
   ],
   technologies: [
     {
       id: 'typescript',
       name: 'TypeScript',
-      type: TECHNOLOGY_TYPE.PROGRAMMING_LANGUAGE
+      description: 'Programming Language'
     },
     {
       id: 'react',
       name: 'React',
-      type: TECHNOLOGY_TYPE.LIBRARY
+      description: 'Frontend Library'
     },
     {
       id: 'javascript',
       name: 'JavaScript',
-      type: TECHNOLOGY_TYPE.PROGRAMMING_LANGUAGE
+      description: 'Programming Language'
     },
     {
-      id: 'javascript',
-      name: 'JavaScript',
-      type: TECHNOLOGY_TYPE.PROGRAMMING_LANGUAGE
+      id: 'nextjs',
+      name: 'NextJs',
+      description: 'Full Stack Framework'
+    },
+    {
+      id: 'mui',
+      name: 'MUI',
+      description: 'React Component Library'
+    },
+    {
+      id: 'tailwind',
+      name: 'Tailwind',
+      description: 'CSS framework',
+    },
+    {
+      id: 'styled-components',
+      name: 'Styled Components',
+      description: 'CSS-in-JS Library'
+    },
+    {
+      id: 'gitlab',
+      name: 'Gitlab',
+      description: 'Code collaboration and automation'
+    },
+    {
+      id: 'github',
+      name: 'Github',
+      description: 'Code collaboration and automation'
+    },
+    {
+      id: 'radixui',
+      name: 'Radix UI',
+      description: 'Headless UI Component Library'
+    },
+    {
+      id: 'gsap',
+      name: 'GSAP',
+      description: 'High-performance web animations library'
+    },
+    {
+      id: 'wagmi',
+      name: 'Wagmi',
+      description: 'Web3 React hooks toolkit'
+    },
+    {
+      id: 'shadcnui',
+      name: 'Shadcn UI',
+      description: 'Customizable React component library'
+    },
+    {
+      id: 'nodejs',
+      name: 'NodeJS',
+      description: 'Programming Language'
+    },
+    {
+      id: 'ethersjs',
+      name: 'Ethers.js',
+      description: 'Ethereum JavaScript library toolkit',
+    },
+    {
+      id: 'web3js',
+      name: 'Web3.js',
+      description: 'JavaScript library for Ethereum',
+    },
+    {
+      id: 'web3',
+      name: 'Web3',
+      description: 'Set of Technologies for building dapps'
     },
     {
       id: 'nx',
       name: 'Nx',
-      type: TECHNOLOGY_TYPE.MONOREPO
+      description: 'Build System for Monorepos'
     },
     {
       id: 'html',
       name: 'HTML',
-      type: TECHNOLOGY_TYPE.MARKUP_LANGUAGE
+      description: 'Markup Language'
     },
     {
       id: 'pug',
       name: 'Pug',
-      type: TECHNOLOGY_TYPE.MARKUP_LANGUAGE
+      description: 'Markup Language'
     },
     {
       id: 'css',
       name: 'CSS',
-      type: TECHNOLOGY_TYPE.STYLE_SHEET_LANGUAGE
+      description: 'Style Sheet Language'
     },
     {
       id: 'scss',
       name: 'SCSS',
-      type: TECHNOLOGY_TYPE.STYLE_SHEET_LANGUAGE
-    }
+      description: 'Style Sheet Language'
+    },
+    {
+      id: 'php',
+      name: 'PHP',
+      description: 'Programming Language',
+    },
+    {
+      id: 'figma',
+      name: 'Figma',
+      description: 'Design Tool',
+    },
+    {
+      id: 'vuejs',
+      name: 'Vue.js',
+      description: 'Progressive JavaScript Framework',
+    },
+    {
+      id: 'expressjs',
+      name: 'Express.js',
+      description: 'back end web application framework',
+    },
+    {
+      id: 'redux',
+      name: 'Redux',
+      description: 'State Management Library',
+    },
+    {
+      id: 'redux-toolkit',
+      name: 'Redux Toolkit',
+      description: 'Simplified Redux State Management Library',
+    },
+    {
+      id: 'bootstrap',
+      name: 'Bootstrap',
+      description: 'CSS framework for responsive design.',
+    },
+    {
+      id: 'git',
+      name: 'GIT',
+      description: 'Version Control System',
+    },
+    {
+      id: 'wordpress',
+      name: 'WordPress',
+      description: 'Web Content Management System',
+    },
+    {
+      id: 'joomla',
+      name: 'Joomla',
+      description: 'Web Content Management System',
+    },
+    {
+      id: 'viem',
+      name: 'Joomla',
+      description: 'Web Content Management System',
+    },
+    {
+      id: 'eslint',
+      name: 'Eslint',
+      description: 'Code linting tool'
+    },
+    {
+      id: 'react-query',
+      name: 'React Query',
+      description: 'Data-fetching library for React'
+    },
+    {
+      id: 'webpack',
+      name: 'Webpack',
+      description: 'Build Tool'
+    },
+    {
+      id: 'storybook',
+      name: 'Storybook',
+      description: 'UI component development environment'
+    },
+    {
+      id: 'vite',
+      name: 'Vite',
+      description: 'Build Tool'
+    },
+    {
+      id: 'docker',
+      name: 'Docker',
+      description: 'Containerization platform for applications',
+    },
   ]
 }

@@ -18,7 +18,7 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
         <span className="w-px absolute h-2 bottom-0 text-bg-primary to-current from-transparent bg-gradient-to-b" />
 
         <div
-          className="min-h-full absolute top-0 transition-transform"
+          className="min-h-full absolute top-0 ease-in-out transition-transform"
           style={{
             transform: `translateY(${translateY}%)`,
           }}

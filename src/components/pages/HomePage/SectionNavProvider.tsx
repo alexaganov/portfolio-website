@@ -1,10 +1,10 @@
 import { createSafeContext, useSafeContext } from '@/utils/context'
-import { isInViewport, scrollToElement } from '@/utils/dom';
 import React, { ComponentType, ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 
 export interface SectionNavSection {
   id: string;
   name: string;
+  shortName?: string;
   Content?: ComponentType;
 }
 
@@ -23,7 +23,7 @@ interface SectionNavProviderProps extends Pick<ContextValue, "sections"> {
 }
 
 const SectionNavProvider = ({ sections, children }: SectionNavProviderProps) => {
-  const [activeId, setActiveId] = useState<string | undefined>(sections[0]?.id);
+  const [activeId, setActiveId] = useState<string | undefined>();
 
   const value = useMemo(() => {
     return {

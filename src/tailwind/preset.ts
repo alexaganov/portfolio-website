@@ -28,9 +28,12 @@ import { OptionalConfig } from 'tailwindcss/types/config';
 const colors = {
   'bg-primary': '#000',
   'bg-secondary': '#0F0F0F',
+  'bg-tertiary': '#292929',
+  'bg-quaternary': '#373737',
   'text-primary': '#fff',
-  'text-secondary': '#CDCDCD',
+  'text-secondary': '#adadad',
   'text-tertiary': '#858585',
+  'text-quaternary': '#4a4a4a',
   'border-primary': '#252525',
   'border-secondary': '#434343',
   'success': {
@@ -44,14 +47,7 @@ const colors = {
 const config: Partial<OptionalConfig> = {
   theme: {
     extend: {
-      colors: {
-        success: {
-          DEFAULT: '#80FF7E',
-        },
-        info: {
-          DEFAULT: '#68C8FF',
-        }
-      },
+      colors,
       textColor: {
         primary: '#fff',
         secondary: '#CDCDCD',
@@ -61,6 +57,7 @@ const config: Partial<OptionalConfig> = {
       backgroundColor: {
         primary: '#000',
         secondary: '#0F0F0F',
+        tertiary: '#292929'
       },
       borderColor: {
         primary: '#252525',
