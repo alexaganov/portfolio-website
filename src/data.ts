@@ -7,7 +7,8 @@ import { MagicSquareLogo } from "./components/icons/poly/MagicSquareLogo";
 export interface ResumeDataTechnology {
   id: string;
   name: string;
-  description: string;
+  description?: string;
+  tags: string[]
 };
 
 export interface ResumeData {
@@ -20,6 +21,7 @@ export interface ResumeData {
   socialHandles: {
     telegram: string;
     linkedin: string;
+    github: string;
   },
   experience: {
     id: string;
@@ -49,13 +51,14 @@ export const resume: ResumeData = {
   firstName: 'Aleksandr',
   lastName: 'Aganov',
   isAvailableForHire: true,
-  shortDescription: 'I create accessible, user-friendly UIs across all platforms, ensuring&nbsp;a&nbsp;smooth and enjoyable experience for every user',
+  shortDescription: 'I create accessible, user-friendly interfaces across all platforms, ensuring&nbsp;a&nbsp;smooth and enjoyable experience for every user',
   // <br />For this, I primarily use React, TypeScript, Tailwind, and Next.js, along with other modern technologies.<br/>I also specialize in building solutions for Web3.
   position: 'Senior Frontend Engineer',
   email: 'aganov.dev@gmail.com',
   socialHandles: {
     telegram: 'alexaganov',
-    linkedin: 'alexaganov'
+    linkedin: 'alexaganov',
+    github: 'alexaganov'
   },
   experience: [
     {
@@ -65,8 +68,16 @@ export const resume: ResumeData = {
       position: 'Senior Frontend Developer',
       startedAt: '2022-12-31T16:00:00.000Z',
       endedAt: '2024-09-30T16:00:00.000Z',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'react-query', 'nextjs', 'web3', 'web3js', 'ethersjs', 'wagmi', 'figma', 'mui', 'shadcn', 'dapps', 'javascript', 'nx', 'vite', 'radixui', 'css', 'scss', 'git', 'tailwind', 'html', 'gitlab']
+      description:`
+        <ul>
+          <li>Developed user interfaces with React, TypeScript, and Tailwind, ensuring responsive, pixel-perfect displays across devices</li>
+          <li>Collaborated with clients, designers, backend and blockchain teams to align features with requirements</li>
+          <li>Architected a design system to unify components, improving usability and speeding up development</li>
+          <li>Built dApps connected to smart contracts, allowing users direct blockchain interactions</li>
+          <li>Performed code reviews to ensure quality and adherence to best practices</li>
+        </ul>
+      `,
+      technologyIds: ['typescript', 'react', 'nextjs', 'tailwind', 'react-query',  'web3js', 'ethersjs', 'wagmi', 'radixui', 'figma', 'mui', 'shadcnui', 'javascript', 'css', 'scss', 'html', 'nx', 'vite', 'git',  'gitlab', 'webpack', 'babel', 'eslint']
     },
     {
       id: 'fojin',
@@ -75,8 +86,16 @@ export const resume: ResumeData = {
       position: 'Senior Frontend Developer',
       startedAt: '2021-03-31T16:00:00.000Z',
       endedAt: '2022-12-31T16:00:00.000Z',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'nextjs', 'mui', 'web3', 'ethersjs', 'figma', 'dapps', 'javascript', 'styled-components', 'css', 'scss', 'git', 'redux', 'redux-toolkit', 'html', 'github']
+      description: `
+        <ul>
+          <li>Built UI systems in React, TypeScript, and MUI to maintain consistent design across projects</li>
+          <li>Mentored junior developers, providing guidance on project tasks and coding practices</li>
+          <li>Built desktop and web apps with blockchain integration for secure, direct user interactions</li>
+          <li>Worked with designers, backend, blockchain teams, and product owners to implement features as planned</li>
+          <li>Conducted code reviews regularly to uphold quality and consistency</li>
+        </ul>
+      `,
+      technologyIds: ['typescript', 'react', 'nextjs', 'mui', 'ethersjs', 'figma', 'dapps', 'javascript', 'styled-components', 'css', 'scss', 'git', 'redux', 'redux-toolkit', 'html', 'github', 'webpack', 'babel', 'eslint']
     },
     {
       id: 'sagirov',
@@ -85,8 +104,16 @@ export const resume: ResumeData = {
       position: 'Middle Frontend Developer',
       startedAt: '2019-04-30T16:00:00.000Z',
       endedAt: '2021-02-28T16:00:00.000Z',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['typescript', 'react', 'nextjs', 'gsap', 'bootstrap', 'figma', 'javascript', 'css', 'scss', 'git', 'redux', 'html', 'github']
+      description: `
+        <ul>
+          <li>Led UI development using React, JavaScript and Next.js</li>
+          <li>Created UI animations and interactions for engaging experiences</li>
+          <li>Optimized SEO, loading times, and performance across projects</li>
+          <li>Collaborated directly with product owners and designers</li>
+          <li>Planned projects architecture to support scalable and maintainable code</li>
+        </ul>
+      `,
+      technologyIds: ['typescript', 'react', 'nextjs', 'gsap', 'bootstrap', 'figma', 'javascript', 'css', 'scss', 'git', 'redux', 'html', 'github', 'pug']
     },
     {
       id: 'freelance',
@@ -94,205 +121,310 @@ export const resume: ResumeData = {
       position: 'Web Developer',
       startedAt: '2016-05-31T16:00:00.000Z',
       endedAt: '2019-04-30T16:00:00.000Z',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      technologyIds: ['javascript', 'vuejs', 'react', 'nodejs', 'php', 'wordpress', 'joomla', 'pug', 'bootstrap', 'css', 'scss', 'git', 'redux', 'html', 'github']
+      description: `
+        <ul>
+          <li>Built sites, including e-commerce, landing pages and portfolios</li>
+          <li>Ensured all websites were fully responsive and displayed consistently across major browsers</li>
+          <li>Worked with clients to add features and fix bugs on existing sites</li>
+          <li>Wrote scripts to scrape content and populate sites automatically</li>
+          <li>Created scripts to automate repetitive tasks for clients</li>
+        </ul>
+      `,
+      technologyIds: ['javascript', 'nodejs', 'php', 'wordpress', 'joomla', 'vuejs', 'gulp', 'bootstrap', 'css', 'scss', 'git', 'html', 'github']
     },
   ],
   technologies: [
     {
-      id: 'typescript',
-      name: 'TypeScript',
-      description: 'Programming Language'
+      "id": "typescript",
+      "name": "TypeScript",
+      "description": "Programming Language",
+      "tags": ["programming-language"]
     },
     {
-      id: 'react',
-      name: 'React',
-      description: 'Frontend Library'
+      "id": "javascript",
+      "name": "JavaScript ES6+",
+      "description": "Programming Language",
+      "tags": ["programming-language"]
     },
     {
-      id: 'javascript',
-      name: 'JavaScript',
-      description: 'Programming Language'
+      "id": "react",
+      "name": "React",
+      "description": "Frontend Library",
+      "tags": ["frontend", "library", "ui", "web"]
     },
     {
-      id: 'nextjs',
-      name: 'NextJs',
-      description: 'Full Stack Framework'
+      "id": "nextjs",
+      "name": "Next.js",
+      "description": "Full Stack Framework",
+      "tags": ["frontend", "backend", "web", "framework"]
     },
     {
-      id: 'mui',
-      name: 'MUI',
-      description: 'React Component Library'
+      "id": "tailwind",
+      "name": "Tailwind",
+      "description": "CSS framework",
+      "tags": ["frontend", "framework", "web", "styles", "css"]
     },
     {
-      id: 'tailwind',
-      name: 'Tailwind',
-      description: 'CSS framework',
+      "id": "mui",
+      "name": "MUI",
+      "description": "React Component Library",
+      "tags": ["frontend", "library", "web", "styles"]
     },
     {
-      id: 'styled-components',
-      name: 'Styled Components',
-      description: 'CSS-in-JS Library'
+      "id": "redux",
+      "name": "Redux",
+      "description": "State Management Library",
+      "tags": ["frontend", "library", "state-management"]
     },
     {
-      id: 'gitlab',
-      name: 'Gitlab',
-      description: 'Code collaboration and automation'
+      "id": "redux-toolkit",
+      "name": "Redux Toolkit",
+      "description": "Simplified Redux State Management Library",
+      "tags": ["frontend", "library", "state-management"]
     },
     {
-      id: 'github',
-      name: 'Github',
-      description: 'Code collaboration and automation'
+      "id": "react-query",
+      "name": "React Query",
+      "description": "Data-fetching library for React",
+      "tags": ["frontend", "data-fetching"]
     },
     {
-      id: 'radixui',
-      name: 'Radix UI',
-      description: 'Headless UI Component Library'
+      "id": "radixui",
+      "name": "Radix UI",
+      "description": "Headless UI Component Library",
+      "tags": ["frontend", "library", "web"]
     },
     {
-      id: 'gsap',
-      name: 'GSAP',
-      description: 'High-performance web animations library'
+      "id": "styled-components",
+      "name": "StyledComponents",
+      "description": "CSS-in-JS Library",
+      "tags": ["frontend", "library",  "web", "styles", "css"]
     },
     {
-      id: 'wagmi',
-      name: 'Wagmi',
-      description: 'Web3 React hooks toolkit'
+      "id": "gsap",
+      "name": "GSAP",
+      "description": "High-performance web animations library",
+      "tags": ["frontend", "library", "web", "animation"]
     },
     {
-      id: 'shadcnui',
-      name: 'Shadcn UI',
-      description: 'Customizable React component library'
+      "id": "wagmi",
+      "name": "Wagmi",
+      "description": "Web3 React hooks toolkit",
+      "tags": ["frontend", "library", "web3", "web"]
     },
     {
-      id: 'nodejs',
-      name: 'NodeJS',
-      description: 'Programming Language'
+      "id": "ethersjs",
+      "name": "Ethers.js",
+      "description": "Ethereum JavaScript library toolkit",
+      "tags": ["web3", "frontend", "library"]
     },
     {
-      id: 'ethersjs',
-      name: 'Ethers.js',
-      description: 'Ethereum JavaScript library toolkit',
+      "id": "web3js",
+      "name": "Web3.js",
+      "description": "JavaScript library for Ethereum",
+      "tags": ["web3", "frontend", "library"]
     },
     {
-      id: 'web3js',
-      name: 'Web3.js',
-      description: 'JavaScript library for Ethereum',
+      "id": "viem",
+      "name": "Viem",
+      "description": "TypeScript interface for Ethereum",
+      "tags": ["web3", "frontend"]
     },
     {
-      id: 'web3',
-      name: 'Web3',
-      description: 'Set of Technologies for building dapps'
+      "id": "nodejs",
+      "name": "NodeJS",
+      "description": "Programming Language",
+      "tags": ["programming-language", "backend"]
     },
     {
-      id: 'nx',
-      name: 'Nx',
-      description: 'Build System for Monorepos'
+      "id": "shadcnui",
+      "name": "Shadcn UI",
+      "description": "Customizable React component library",
+      "tags": ["frontend", "library", "web"]
     },
     {
-      id: 'html',
-      name: 'HTML',
-      description: 'Markup Language'
+      "id": "html",
+      "name": "HTML",
+      "description": "Markup Language",
+      "tags": ["frontend", "markup", "web"]
     },
     {
-      id: 'pug',
-      name: 'Pug',
-      description: 'Markup Language'
+      "id": "pug",
+      "name": "Pug",
+      "description": "Markup Language",
+      "tags": ["frontend", "markup", "web"]
     },
     {
-      id: 'css',
-      name: 'CSS',
-      description: 'Style Sheet Language'
+      "id": "css",
+      "name": "CSS",
+      "description": "Style Sheet Language",
+      "tags": ["frontend", "styles", "css", "web"]
     },
     {
-      id: 'scss',
-      name: 'SCSS',
-      description: 'Style Sheet Language'
+      "id": "scss",
+      "name": "SCSS",
+      "description": "Style Sheet Language",
+      "tags": ["frontend", "styles", "css", "web"]
     },
     {
-      id: 'php',
-      name: 'PHP',
-      description: 'Programming Language',
+      "id": "figma",
+      "name": "Figma",
+      "description": "Design Tool",
+      "tags": ["design", "app"]
+    },
+   
+    {
+      "id": "bootstrap",
+      "name": "Bootstrap",
+      "description": "CSS framework for responsive design.",
+      "tags": ["frontend", "styles", "framework", "css"]
     },
     {
-      id: 'figma',
-      name: 'Figma',
-      description: 'Design Tool',
+      "id": "nx",
+      "name": "NX",
+      "description": "Build System for Monorepos",
+      "tags": ["devops", "build-tool", "monorepo"]
     },
     {
-      id: 'vuejs',
-      name: 'Vue.js',
-      description: 'Progressive JavaScript Framework',
+      "id": "git",
+      "name": "GIT",
+      "description": "Version Control System",
+      "tags": ["devops", "version-control"]
     },
     {
-      id: 'expressjs',
-      name: 'Express.js',
-      description: 'back end web application framework',
+      "id": "gitlab",
+      "name": "Gitlab",
+      "description": "Code collaboration and automation",
+      "tags": ["devops", "version-control"]
     },
     {
-      id: 'redux',
-      name: 'Redux',
-      description: 'State Management Library',
+      "id": "github",
+      "name": "Github",
+      "description": "Code collaboration and automation",
+      "tags": ["devops", "version-control"]
     },
     {
-      id: 'redux-toolkit',
-      name: 'Redux Toolkit',
-      description: 'Simplified Redux State Management Library',
+      "id": "eslint",
+      "name": "Eslint",
+      "description": "Code linting tool",
+      "tags": ["devops", "code-quality"]
     },
     {
-      id: 'bootstrap',
-      name: 'Bootstrap',
-      description: 'CSS framework for responsive design.',
+      "id": "prettier",
+      "name": "Prettier",
+      "tags": ["devops", "code-quality"]
     },
     {
-      id: 'git',
-      name: 'GIT',
-      description: 'Version Control System',
+      "id": "webpack",
+      "name": "Webpack",
+      "description": "Build Tool",
+      "tags": ["devops", "build-tool"]
     },
     {
-      id: 'wordpress',
-      name: 'WordPress',
-      description: 'Web Content Management System',
+      "id": "babel",
+      "name": "Babel",
+      "description": "Compiler",
+      "tags": ["devops", "build-tool"]
     },
     {
-      id: 'joomla',
-      name: 'Joomla',
-      description: 'Web Content Management System',
+      "id": "gulp",
+      "name": "Gulp",
+      "tags": ["devops", "build-tool"]
     },
     {
-      id: 'viem',
-      name: 'Joomla',
-      description: 'Web Content Management System',
+      "id": "npm",
+      "name": "Npm",
+      "description": "Package Manager",
+      "tags": ["devops", "package-manager"]
     },
     {
-      id: 'eslint',
-      name: 'Eslint',
-      description: 'Code linting tool'
+      "id": "yarn",
+      "name": "Yarn",
+      "description": "Package Manager",
+      "tags": ["devops", "package-manager"]
     },
     {
-      id: 'react-query',
-      name: 'React Query',
-      description: 'Data-fetching library for React'
+      "id": "vuejs",
+      "name": "Vue.js",
+      "description": "Progressive JavaScript Framework",
+      "tags": ["frontend", "framework"]
     },
     {
-      id: 'webpack',
-      name: 'Webpack',
-      description: 'Build Tool'
+      "id": "storybook",
+      "name": "Storybook",
+      "description": "UI component development environment",
+      "tags": ["frontend", "testing"]
     },
     {
-      id: 'storybook',
-      name: 'Storybook',
-      description: 'UI component development environment'
+      "id": "jest",
+      "name": "Jest",
+      "tags": ["frontend", "framework", "testing"]
     },
     {
-      id: 'vite',
-      name: 'Vite',
-      description: 'Build Tool'
+      "id": "vite",
+      "name": "Vite",
+      "description": "Build Tool",
+      "tags": ["devops", "build-tool"]
     },
     {
-      id: 'docker',
-      name: 'Docker',
-      description: 'Containerization platform for applications',
+      "id": "expressjs",
+      "name": "Express.js",
+      "description": "back end web application framework",
+      "tags": ["backend", "framework"]
     },
+    {
+      "id": "postman",
+      "name": "Postman",
+      "description": "API development and testing tool",
+      "tags": ["devops", "api", "testing", "app"]
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "description": "Containerization platform for applications",
+      "tags": ["devops", "containerization"]
+    },
+    {
+      "id": "restapi",
+      "name": "REST API",
+      "description": "Standard for web data interaction",
+      "tags": ["backend", "api"]
+    },
+    {
+      "id": "uxui",
+      "name": "UI/UX",
+      "description": "Design and user experience",
+      "tags": ["design"]
+    },
+    {
+      "id": "php",
+      "name": "PHP",
+      "description": "Programming Language",
+      "tags": ["programming-language", "backend"]
+    },
+    {
+      "id": "wordpress",
+      "name": "WordPress",
+      "description": "Web Content Management System",
+      "tags": ["cms", "frontend", "backend"]
+    },
+    {
+      "id": "joomla",
+      "name": "Joomla",
+      "description": "Web Content Management System",
+      "tags": ["cms", "frontend", "backend"]
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "description": "Document-oriented Database",
+      "tags": ["backend", "database"]
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "description": "Relational Database",
+      "tags": ["backend", "database"]
+    }
   ]
 }

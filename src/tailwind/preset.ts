@@ -73,13 +73,39 @@ const config: Partial<OptionalConfig> = {
     },
   },
   plugins: [
-    plugin(({ addBase }) => {
+    plugin(({ addBase, addComponents }) => {
       addBase({
         "::selection": {
           'mix-blend-mode': 'darken',
           'background-clip': 'text',
           color: colors['bg-primary'],
           backgroundColor: "rgba(255, 255, 255, 0.6)",
+        }
+      })
+
+      addComponents({
+        '.prose': {
+          lineHeight: '1.75',
+          fontSize: '14px',
+          fontWeight: '300',
+          color: colors['text-secondary'],
+
+          'ul': {
+            position: 'relative',
+            paddingLeft: '1.5rem',
+
+            'li + li': {
+              marginTop: '0.25rem'
+            },
+
+            'li::before': {
+              content: "'✦'",
+              position: 'absolute',
+              left: '0',
+              color: colors['text-quaternary']
+            }
+          },
+
         }
       })
     })

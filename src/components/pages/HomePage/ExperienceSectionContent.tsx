@@ -25,14 +25,14 @@ const ExperienceSectionContent = () => {
                 "flex items-center size-9 justify-center rounded-lg border border-primary flex-shrink-0",
                 {
                   "text-text-tertiary": isNoImage,
-                  "text-text-secondary": !isNoImage
+                  "text-text-secondary": !isNoImage,
                 }
               )}
             >
               <Icon className="size-5" />
             </span>
 
-            <div className="flex flex-col gap-3 pt-1">
+            <div className="flex flex-col gap-4 pt-1">
               <div className="flex flex-col gap-1">
                 <h3 className="text-lg font-bold">
                   {experience.websiteUrl && (
@@ -61,9 +61,10 @@ const ExperienceSectionContent = () => {
                 </div>
               </div>
 
-              <div className="leading-[1.75] text-tertiary font-light">
-                {experience.description}
-              </div>
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{ __html: experience.description }}
+              />
 
               <ul
                 aria-label="Technologies used"

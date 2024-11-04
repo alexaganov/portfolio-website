@@ -14,67 +14,30 @@ import MainNavMobile from './MainNavMobile';
 import SkillsSectionContent from './SkillsSectionContent';
 import ExperienceSectionContent from './ExperienceSectionContent';
 import AboutSectionContent from './AboutSectionContent';
+import { ExternalLink } from '@/components/icons/mono/ExternalLink';
+import { Github } from '@/components/icons/mono/Github';
+import ContactsNav, { ContactsNavProps } from './ContactsNav';
 
-
-const getContactsList = (): {
-  Icon: ComponentType<{ className?: string }>;
-  id: string;
-  name: string;
-  url: string;
-}[] => {
-  return [
-    {
-      Icon: Telegram,
-      id: 'telegram',
-      name: 'telegram',
-      url: `https://t.me/${resume.socialHandles.telegram}`
-    },
-    {
-      Icon: Linkedin,
-      id: 'linkedin',
-      name: 'linkedin',
-      url: `https://www.linkedin.com/in/${resume.socialHandles.linkedin}`
-    },
-    {
-      Icon: Email,
-      id: 'email',
-      name: resume.email,
-      url: `mailto:${resume.email}`
-    }
-  ]
-}
-
-type ContactsListProps =ComponentPropsWithRef<"nav"> & {
-  items: {
-    Icon: ComponentType<{ className?: string }>;
-    id: string;
-    name: string;
-    url: string;
-  }[]
-}
-
-const ContactsList = ({ items, ...props}: ContactsListProps) => {
-  return (
-    <nav {...props}>
-      <ul className="flex flex-wrap gap-x-6 gap-y-1.5">
-        {items.map(({ id, name, Icon, url }) => {
-          return (
-            <li key={id}>
-              <a
-                target="_blank"
-                href={url}
-                className="gap-2.5 inline-flex text-sm text-tertiary hover:text-primary hover:underline font-mono transition-colors"
-              >
-                <Icon className="size-5 flex-shrink-0" />
-                {name}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  )
-}
+const contacts: ContactsNavProps['items'] = [
+  {
+    Icon: Telegram,
+    id: 'telegram',
+    name: 'telegram',
+    url: `https://t.me/${resume.socialHandles.telegram}`
+  },
+  {
+    Icon: Linkedin,
+    id: 'linkedin',
+    name: 'linkedin',
+    url: `https://www.linkedin.com/in/${resume.socialHandles.linkedin}`
+  },
+  {
+    Icon: Email,
+    id: 'email',
+    name: resume.email,
+    url: `mailto:${resume.email}`
+  }
+]
 
 const sections: SectionNavSection[] = [
   {
@@ -96,8 +59,6 @@ const sections: SectionNavSection[] = [
 ];
 
 export const HomePage = () => {
-  const contacts = getContactsList();
-
   return (
     <SectionNavProvider sections={sections}>
       <main className="relative lg:grid lg:grid-cols-2">
@@ -107,17 +68,24 @@ export const HomePage = () => {
             "min-h-screen lg:h-screen items-center flex lg:sticky flex-col lg:top-0"
           )}
         >
-          <div className="flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-8 max-w-[600px] sm:gap-8 lg:pb-14 lg:pt-[7.5rem] lg:justify-between lg:ml-auto">
-            <div className='flex flex-col items-start'>
-              <span className="rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs mb-3.5">
-                <span className="relative flex text-success h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
-                  <span className="relative inline-flex rounded-full w-full h-full bg-current"></span>
-                </span>
-                available for hire
-              </span>
+          <div
+            className={clsx(
+              "relative flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-8 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
+            )}
+          >
 
-              <h1 className="uppercase font-bold  text-2xl sm:text-4xl tracking-wider sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
+            <div className="flex flex-col items-start">
+              <div className='flex gap-4 items-center mb-3.5'>
+                <span className="rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs ">
+                  <span className="relative flex text-success h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+                    <span className="relative inline-flex rounded-full w-full h-full bg-current"></span>
+                  </span>
+                  available for hire
+                </span>
+              </div>
+
+              <h1 className="uppercase font-bold mb-1 text-2xl sm:text-4xl tracking-wider sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
                 {resume.firstName} {resume.lastName}
               </h1>
 
@@ -126,32 +94,54 @@ export const HomePage = () => {
               </p>
 
               <p
-                className="leading-[1.75] text-text-secondary font-light"
+                className="leading-[1.75] text-text-secondary mb-8 font-light"
                 dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
               />
+
+              <ContactsNav aria-label="Contacts" items={contacts} />
             </div>
 
-            <ContactsList
-              aria-label="Contacts"
-              items={contacts}
-            />
 
-            <MainNavDesktop className="mt-auto max-lg:hidden" />
+            <MainNavDesktop className="my-auto max-lg:hidden" />
+
+            <a
+              href="#"
+              className="text-sm transition-all items-center max-lg:bottom-24 inline-flex gap-1.5 font-mono hover:underline text-text-primary"
+            >
+              View Resume to Learn More
+              <ExternalLink className="size-4" />
+            </a>
           </div>
         </header>
 
         <div className="bg-secondary relative items-center flex flex-col rounded-t-xl lg:rounded-l-xl">
-          <div className='max-lg:hidden sticky top-0 pointer-events-none w-full h-0'>
-            <div className='h-[8.5rem] bg-gradient-to-t from-transparent to-bg-secondary' />
+          <div className="max-lg:hidden sticky top-0 pointer-events-none w-full h-0">
+            <div className="h-[8.5rem] bg-gradient-to-t from-transparent to-bg-secondary" />
           </div>
 
-          <HomePageSections
-            sectionClassName="pt-14 md:pt-20 last:min-h-screen last:max-lg:pb-[8.5rem] lg:pt-[10.125rem]"
-            className="max-w-[600px] lg:mr-auto px-5 md:px-10"
-          />
+          <div className="pb-24 max-w-[600px] lg:mr-auto lg:pb-16 px-5 md:px-10">
+            <HomePageSections
+              sectionClassName="pt-20 lg:pt-[10.125rem]"
+            />
 
-          <div className='max-lg:hidden sticky bottom-0 pointer-events-none w-full h-0'>
-            <div className='h-[8.5rem] -translate-y-full bg-gradient-to-b from-transparent to-bg-secondary' />
+            <footer className="mt-20">
+              <p className="text-sm font-mono text-right text-text-tertiary">
+                Designed and Developed by Me
+                {' '}
+                <a
+                  target="_blank"
+                  className="text-text-primary inline-flex gap-1.5 hover:underline"
+                  href="https://github.com/alexaganov/portfolio-website"
+                >
+                  View Source Code
+                  <Github className="size-4" />
+                </a>
+              </p>
+            </footer>
+          </div>
+
+          <div className="max-lg:hidden sticky bottom-0 pointer-events-none w-full h-0">
+            <div className="h-16 -translate-y-full bg-gradient-to-b from-transparent to-bg-secondary" />
           </div>
         </div>
       </main>

@@ -75,10 +75,17 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
       </nav>
 
       <a
-        href={activeSection ? "#header" : `#${sections[0].id}`}
+        onClick={(event) => {
+          event.preventDefault();
+
+          document
+            .getElementById(activeSection ? "header" : sections[0].id)
+            ?.scrollIntoView();
+        }}
+        href="#"
         className={clsx("aspect-square h-14 items-center justify-center  ease-in-out flex flex-shrink-0 rounded-full", {
-          "text-primary bg-bg-quaternary": hasActiveSection,
-            "text-tertiary bg-bg-tertiary": !hasActiveSection,
+          "text-text-primary bg-bg-quaternary": hasActiveSection,
+          "text-text-tertiary bg-bg-tertiary": !hasActiveSection,
         })}
       >
         <ArrowUp
