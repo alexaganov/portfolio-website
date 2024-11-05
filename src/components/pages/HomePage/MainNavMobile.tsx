@@ -2,7 +2,6 @@ import React, { ComponentPropsWithRef } from "react";
 import { useSectionNav } from "./SectionNavProvider";
 import clsx from "clsx";
 import { ArrowUp } from "@/components/icons/mono/ArrowUp";
-import { removeHash } from "@/utils/navigation";
 
 type MainNavMobileProps = ComponentPropsWithRef<"div"> & {};
 
@@ -51,6 +50,11 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
               return (
                 <li key={id} className="flex flex-1">
                   <a
+                    onClick={(event) => {
+                      event.preventDefault();
+
+                      document.getElementById(id)?.scrollIntoView();
+                    }}
                     href={`#${id}`}
                     className={clsx(
                       "flex h-full items-center justify-center text-center w-full font-mono text-xs uppercase transition-colors hover:text-text-primary",
@@ -84,8 +88,6 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
       <a
         onClick={(event) => {
           event.preventDefault();
-
-          removeHash();
 
           document
             .getElementById(activeSection ? "header" : sections[0].id)

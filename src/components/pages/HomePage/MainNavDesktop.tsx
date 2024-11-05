@@ -46,6 +46,11 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
           return (
             <li key={id} className="flex">
               <a
+                onClick={(event) => {
+                  event.preventDefault();
+
+                  document.getElementById(id)?.scrollIntoView();
+                }}
                 href={`#${id}`}
                 className={clsx(
                   "flex font-mono gap-7 uppercase transition-colors hover:text-text-primary",
