@@ -34,7 +34,7 @@ const SectionNavProvider = ({
       sections,
       setActiveId,
     };
-  }, [activeId, setActiveId]);
+  }, [activeId, setActiveId, sections]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
