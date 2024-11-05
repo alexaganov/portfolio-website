@@ -17,6 +17,10 @@ const ExperienceSectionContent = () => {
       {resume.experience.map((experience) => {
         const Icon = getCompanyLogoById(experience.id) || NoImage;
         const isNoImage = Icon === NoImage;
+        const formattedStartedAt = formatDate(experience.startedAt, "MMM yyyy");
+        const formattedEndedAt = experience.endedAt
+        ? formatDate(experience.endedAt, "MMM yyyy")
+        : "present"
 
         return (
           <li key={experience.id} className="flex gap-4">
@@ -54,11 +58,8 @@ const ExperienceSectionContent = () => {
 
                 <div className="flex justify-between items-baseline flex-wrap gap-1">
                   <p>{experience.position}</p>
-                  <span className="font-mono text-tertiary text-xs uppercase">
-                    {formatDate(experience.startedAt, "MMM yyyy")} -{" "}
-                    {experience.endedAt
-                      ? formatDate(experience.endedAt, "MMM yyyy")
-                      : "present"}
+                  <span aria-label={`Worked from ${formattedStartedAt} to ${formattedEndedAt}`} className="font-mono text-tertiary text-xs uppercase">
+                    {formattedStartedAt} - {formattedEndedAt}
                   </span>
                 </div>
               </div>

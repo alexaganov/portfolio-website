@@ -2,11 +2,14 @@ import React, { ComponentPropsWithRef } from 'react'
 import { useSectionNav } from './SectionNavProvider';
 import clsx from 'clsx';
 import { ArrowUp } from '@/components/icons/mono/ArrowUp';
+import { useRouter } from 'next/navigation';
+import { removeHash } from '@/utils/navigation';
 
 type MainNavMobileProps = ComponentPropsWithRef<"div"> & {
 }
 
 const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
+  const router = useRouter();
   const { activeId, sections } = useSectionNav();
   const activeSectionIndex = sections.findIndex(section => section.id === activeId);
   const activeSection = activeSectionIndex !== -1 ? sections[activeSectionIndex] : null;
@@ -56,7 +59,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                     )}
                   >
                     {shortName && (
-                      <span className="sm:hidden">{shortName}</span>
+                      <span aria-label={name} className="sm:hidden">{shortName}</span>
                     )}
 
                     <span
@@ -77,6 +80,8 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
       <a
         onClick={(event) => {
           event.preventDefault();
+
+          removeHash();
 
           document
             .getElementById(activeSection ? "header" : sections[0].id)

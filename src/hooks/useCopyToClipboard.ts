@@ -1,3 +1,4 @@
+import copy from 'copy-to-clipboard';
 import { useCallback, useEffect, useState } from 'react';
 
 const useCopyToClipboard = ({ timeout }: { timeout?: number } = {}) => {
@@ -6,25 +7,14 @@ const useCopyToClipboard = ({ timeout }: { timeout?: number } = {}) => {
 
   const copyToClipboard = useCallback(
     async (value: string) => {
-      if (!navigator?.clipboard) {
-        console.warn('Clipboard not supported')
+      const success = copy(value);
 
-        return false
-      }
-
-      try {
-        await navigator.clipboard.writeText(value)
-
+      if (success) {
         setCopiedValue(value);
         setIsCopied(true);
-
-        return true;
-      } catch (error) {
-        console.warn('Copy failed', error)
-
+      } else {
         setCopiedValue(null);
-
-        return false;
+        setIsCopied(false);
       }
     },
     [],

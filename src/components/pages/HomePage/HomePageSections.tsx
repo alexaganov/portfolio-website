@@ -51,30 +51,13 @@ const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps)
         return (
           <section id={id} key={id} className={clsx('flex flex-col', sectionClassName)}>
             <header className="mb-6 flex flex-col gap-2">
-              <span className="text-4xl font-mono text-text-quaternary">
+              <span aria-hidden="true" className="text-4xl font-mono text-text-quaternary">
                 {`${i + 1}`.padStart(3, "0")}
               </span>
               <h2 className="text-2xl uppercase tracking-wider">{name}</h2>
             </header>
 
             {Content && <Content />}
-
-            {/* <div className='flex-1 mt-20' style={{
-              backgroundColor: 'transparent',
-              // opacity: 0.2,
-              backgroundImage: 'radial-gradient(#707070 0.5px, transparent 0.5px)',
-              backgroundSize: '15px 15px'
-              // backgroundColor: '#000',
-              // opacity: 0.2,
-              // backgroundImage:  'repeating-radial-gradient( circle at 0 0, transparent 0, #5e5e5e 11px ), repeating-linear-gradient( #000, #000000 )'
-
-              // "backgroundColor": "#e5e5f7",
-              // opacity: 0.1,
-              // backgroundImage:  'linear-gradient(135deg, #000000 25%, transparent 25%), linear-gradient(225deg, #000000 25%, transparent 25%), linear-gradient(45deg, #000000 25%, transparent 25%), linear-gradient(315deg, #000000 25%, #e5e5f7 25%)',
-              // backgroundPosition:  '11px 0, 11px 0, 0 0, 0 0',
-              // backgroundSize: '22px 22px',
-              // backgroundRepeat: 'repeat'
-            }} /> */}
           </section>
         );
       })}

@@ -47,7 +47,7 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
                   }
                 )}
               >
-                <span>{`${i + 1}`.padStart(3, "0")}</span>
+                <span aria-hidden="true">{`${i + 1}`.padStart(3, "0")}</span>
                 <span>{name}</span>
               </a>
             </li>

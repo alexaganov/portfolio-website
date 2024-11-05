@@ -21,6 +21,8 @@ import { TelegramFilled } from '@/components/icons/mono/TelegramFilled';
 import { LinkedinBold } from '@/components/icons/mono/LinkedinBold';
 import { GithubFilled } from '@/components/icons/mono/GithubFilled';
 import { EmailFilled } from '@/components/icons/mono/EmailFilled';
+import Link from 'next/link';
+import CopyButton from '@/components/common/CopyButton';
 
 const contacts: ContactsNavProps['items'] = [
   {
@@ -46,7 +48,6 @@ const contacts: ContactsNavProps['items'] = [
     id: 'email',
     name: resume.email,
     url: `mailto:${resume.email}`,
-    copy: resume.email
   }
 ]
 
@@ -109,7 +110,10 @@ export const HomePage = () => {
                 dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
               />
 
-              <ContactsNav aria-label="Contacts" items={contacts} />
+              <div className='flex flex-col gap-y-4 gap-x-8'>
+                <ContactsNav aria-label="Contacts" items={contacts} />
+                <CopyButton value={resume.email} />
+              </div>
             </div>
 
 
@@ -136,19 +140,25 @@ export const HomePage = () => {
               sectionClassName="pt-20 lg:pt-[10.125rem]"
             />
 
-            <footer className="mt-20">
-              <p className="text-sm font-mono text-right text-text-quaternary">
-                Designed and Developed by Me
-                {' '}
+            <footer className="mt-20 flex items-center lg:items-end flex-col gap-12">
+              <div className='lg:hidden flex flex-col gap-4 items-center'>
+                <ContactsNav aria-label="Contacts"  items={contacts} />
+                <CopyButton value={resume.email} />
+              </div>
+
+              <div className="text-sm font-mono text-center flex-col items-center lg:text-right lg:items-end ">
+                <p className='text-text-quaternary '>
+                  Designed and Developed by <Link className="text-text-tertiary transition-colors hover:text-text-primary inline-flex gap-1.5 hover:underline" href="/">Aleksandr Aganov.</Link>
+                </p>
                 <a
                   target="_blank"
-                  className="text-text-primary inline-flex gap-1.5 hover:underline"
+                  className="inline-flex gap-1.5 text-text-tertiary transition-colors hover:text-text-primary hover:underline"
                   href="https://github.com/alexaganov/portfolio-website"
                 >
                   View Source Code
                   <Github className="size-4" />
                 </a>
-              </p>
+              </div>
             </footer>
           </div>
 
