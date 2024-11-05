@@ -1,16 +1,18 @@
-import { ConsumerProps, Context, createContext, use, useContext } from 'react';
+import { Context, createContext, use } from "react";
 
 const defaultValue = undefined;
 
 type DefaultValue = typeof defaultValue;
 
-export const createSafeContext = <ContextValue>(): Context<ContextValue | DefaultValue> => {
+export const createSafeContext = <ContextValue>(): Context<
+  ContextValue | DefaultValue
+> => {
   return createContext<ContextValue | DefaultValue>(defaultValue);
 };
 
 export const useSafeContext = <ContextType>(
   context: Context<ContextType | DefaultValue>,
-  contextName = '',
+  contextName = ""
 ): ContextType => {
   const value = use(context);
 

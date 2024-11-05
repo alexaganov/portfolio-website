@@ -4,4 +4,4 @@ export const removeHash = () => {
     document.title,
     window.location.pathname + window.location.search
   );
-}
+};

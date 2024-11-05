@@ -1,25 +1,27 @@
-import React, { ComponentPropsWithRef } from 'react'
-import { useSectionNav } from './SectionNavProvider';
-import clsx from 'clsx';
-import { ArrowUp } from '@/components/icons/mono/ArrowUp';
-import { useRouter } from 'next/navigation';
-import { removeHash } from '@/utils/navigation';
+import React, { ComponentPropsWithRef } from "react";
+import { useSectionNav } from "./SectionNavProvider";
+import clsx from "clsx";
+import { ArrowUp } from "@/components/icons/mono/ArrowUp";
+import { removeHash } from "@/utils/navigation";
 
-type MainNavMobileProps = ComponentPropsWithRef<"div"> & {
-}
+type MainNavMobileProps = ComponentPropsWithRef<"div"> & {};
 
 const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
-  const router = useRouter();
   const { activeId, sections } = useSectionNav();
-  const activeSectionIndex = sections.findIndex(section => section.id === activeId);
-  const activeSection = activeSectionIndex !== -1 ? sections[activeSectionIndex] : null;
-  const hasActiveSection = activeSectionIndex !== -1
-  const translateX = hasActiveSection ? activeSectionIndex / sections.length * 100 : 0;
+  const activeSectionIndex = sections.findIndex(
+    (section) => section.id === activeId
+  );
+  const activeSection =
+    activeSectionIndex !== -1 ? sections[activeSectionIndex] : null;
+  const hasActiveSection = activeSectionIndex !== -1;
+  const translateX = hasActiveSection
+    ? (activeSectionIndex / sections.length) * 100
+    : 0;
 
   return (
     <div className={clsx("flex gap-2", className)} {...props}>
       <nav
-        className="rounded-full overflow-hidden bg-tertiary flex-1 p-1.5"
+        className="rounded-full overflow-hidden bg-bg-tertiary flex-1 p-1.5"
         aria-label="Main navigation"
       >
         <div className="relative rounded-full overflow-hidden h-full">
@@ -51,15 +53,17 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                   <a
                     href={`#${id}`}
                     className={clsx(
-                      "flex h-full items-center justify-center text-center w-full font-mono text-xs uppercase transition-colors hover:text-primary",
+                      "flex h-full items-center justify-center text-center w-full font-mono text-xs uppercase transition-colors hover:text-text-primary",
                       {
-                        "text-primary": isActive,
-                        "text-tertiary": !isActive,
+                        "text-text-primary": isActive,
+                        "text-text-tertiary": !isActive,
                       }
                     )}
                   >
                     {shortName && (
-                      <span aria-label={name} className="sm:hidden">{shortName}</span>
+                      <span aria-label={name} className="sm:hidden">
+                        {shortName}
+                      </span>
                     )}
 
                     <span
@@ -88,10 +92,13 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
             ?.scrollIntoView();
         }}
         href="#"
-        className={clsx("aspect-square h-14 items-center justify-center  ease-in-out flex flex-shrink-0 rounded-full", {
-          "text-text-primary bg-bg-quaternary": hasActiveSection,
-          "text-text-tertiary bg-bg-tertiary": !hasActiveSection,
-        })}
+        className={clsx(
+          "aspect-square h-14 items-center justify-center  ease-in-out flex flex-shrink-0 rounded-full",
+          {
+            "text-text-primary bg-bg-quaternary": hasActiveSection,
+            "text-text-tertiary bg-bg-tertiary": !hasActiveSection,
+          }
+        )}
       >
         <ArrowUp
           className={clsx("size-5 transition-all", {
@@ -101,6 +108,6 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
       </a>
     </div>
   );
-}
+};
 
-export default MainNavMobile
+export default MainNavMobile;

@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 
 export const Github = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -12,4 +12,4 @@ export const Github = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};

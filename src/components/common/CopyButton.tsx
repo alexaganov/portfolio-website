@@ -10,7 +10,7 @@ interface CopyButtonProps extends ComponentProps<"button"> {
 }
 
 const CopyButton = ({ className, label, value }: CopyButtonProps) => {
-  const {  isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 1000 });
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 1000 });
 
   return (
     <button
@@ -26,9 +26,12 @@ const CopyButton = ({ className, label, value }: CopyButtonProps) => {
       {label || value}
       <Copy
         aria-hidden="true"
-        className={clsx("w-4 h-4 transition-transform transform-gpu ease-in-out", {
-          "-translate-y-full opacity-0": isCopied,
-        })}
+        className={clsx(
+          "w-4 h-4 transition-transform transform-gpu ease-in-out",
+          {
+            "-translate-y-full opacity-0": isCopied,
+          }
+        )}
       />
 
       <span
@@ -45,6 +48,6 @@ const CopyButton = ({ className, label, value }: CopyButtonProps) => {
       </span>
     </button>
   );
-}
+};
 
 export default CopyButton;

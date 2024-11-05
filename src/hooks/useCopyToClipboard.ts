@@ -1,24 +1,21 @@
-import copy from 'copy-to-clipboard';
-import { useCallback, useEffect, useState } from 'react';
+import copy from "copy-to-clipboard";
+import { useCallback, useEffect, useState } from "react";
 
 const useCopyToClipboard = ({ timeout }: { timeout?: number } = {}) => {
   const [copiedValue, setCopiedValue] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyToClipboard = useCallback(
-    async (value: string) => {
-      const success = copy(value);
+  const copyToClipboard = useCallback(async (value: string) => {
+    const success = copy(value);
 
-      if (success) {
-        setCopiedValue(value);
-        setIsCopied(true);
-      } else {
-        setCopiedValue(null);
-        setIsCopied(false);
-      }
-    },
-    [],
-  );
+    if (success) {
+      setCopiedValue(value);
+      setIsCopied(true);
+    } else {
+      setCopiedValue(null);
+      setIsCopied(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (!timeout || timeout <= 0) {

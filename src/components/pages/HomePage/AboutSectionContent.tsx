@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const AboutSectionContent = () => {
   return (
@@ -15,11 +15,12 @@ const AboutSectionContent = () => {
         For over seven years, I've been translating designs into functional UIs,
         using my main stack — React, TypeScript, Tailwind, and Next.js — to
         build efficient, accessible interfaces. I also work with Web3
-        technologies to create interactive, decentralized experiences. I&nbsp;enjoy
-        the challenge of turning concepts into interactive applications, and I'm
-        always driven to find solutions, no matter how complex the problem.
-        Collaboration is equally important to me, as it helps me understand
-        issues more deeply and learn from others' unique experiences.
+        technologies to create interactive, decentralized experiences.
+        I&nbsp;enjoy the challenge of turning concepts into interactive
+        applications, and I'm always driven to find solutions, no matter how
+        complex the problem. Collaboration is equally important to me, as it
+        helps me understand issues more deeply and learn from others' unique
+        experiences.
       </p>
 
       <p>
@@ -58,7 +59,7 @@ const AboutSectionContent = () => {
         others.
       </p> */}
     </div>
-  )
-}
+  );
+};
 
-export default AboutSectionContent
+export default AboutSectionContent;

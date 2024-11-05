@@ -1,20 +1,28 @@
-import React, { ComponentPropsWithRef } from 'react'
-import { useSectionNav } from './SectionNavProvider';
-import clsx from 'clsx';
+import React, { ComponentPropsWithRef } from "react";
+import { useSectionNav } from "./SectionNavProvider";
+import clsx from "clsx";
 
-type MainNavDesktopProps = ComponentPropsWithRef<"nav"> & {
-}
+type MainNavDesktopProps = ComponentPropsWithRef<"nav"> & {};
 
 const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
   const { activeId, sections } = useSectionNav();
-  const activeSectionIndex = sections.findIndex(section => section.id === activeId);
-  const translateY = activeSectionIndex === -1 ? 0 : activeSectionIndex / sections.length * 100;
+  const activeSectionIndex = sections.findIndex(
+    (section) => section.id === activeId
+  );
+  const translateY =
+    activeSectionIndex === -1
+      ? 0
+      : (activeSectionIndex / sections.length) * 100;
 
   return (
-    <nav className={clsx("relative", className)} aria-label="Main navigation" {...props}>
+    <nav
+      className={clsx("relative", className)}
+      aria-label="Main navigation"
+      {...props}
+    >
       <div className="w-[3px] -my-2 left-11 flex justify-center overflow-hidden top-0 bottom-0 absolute">
         <span className="w-px absolute h-2 top-0 text-bg-primary to-current from-transparent bg-gradient-to-t" />
-        <div className="h-full bg-current text-tertiary w-px rounded-full" />
+        <div className="h-full bg-current text-text-tertiary w-px rounded-full" />
         <span className="w-px absolute h-2 bottom-0 text-bg-primary to-current from-transparent bg-gradient-to-b" />
 
         <div
@@ -23,7 +31,7 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
             transform: `translateY(${translateY}%)`,
           }}
         >
-          <div className="flex relative flex-col text-primary items-center">
+          <div className="flex relative flex-col text-text-primary items-center">
             <span className="w-px h-2 top-0 from-current to-transparent bg-gradient-to-t" />
             <span className="w-[3px] rounded-full h-6 bg-current" />
             <span className="w-px h-2 bottom-0 from-current to-transparent bg-gradient-to-b" />
@@ -40,10 +48,10 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
               <a
                 href={`#${id}`}
                 className={clsx(
-                  "flex font-mono gap-7 uppercase transition-colors hover:text-primary",
+                  "flex font-mono gap-7 uppercase transition-colors hover:text-text-primary",
                   {
-                    "text-primary": isActive,
-                    "text-tertiary": !isActive,
+                    "text-text-primary": isActive,
+                    "text-text-tertiary": !isActive,
                   }
                 )}
               >
@@ -56,6 +64,6 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
       </ul>
     </nav>
   );
-}
+};
 
-export default MainNavDesktop
+export default MainNavDesktop;

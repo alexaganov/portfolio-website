@@ -1,7 +1,7 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 export const ArrowUpRight = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <svg viewBox="0 0 20 20" fill='none' {...props}>
+    <svg viewBox="0 0 20 20" fill="none" {...props}>
       <path
         d="M5.8335 14.1666L14.1668 5.83331"
         stroke="currentcolor"
@@ -18,4 +18,4 @@ export const ArrowUpRight = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};

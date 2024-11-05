@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 
 export const TelegramFilled = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -11,4 +11,4 @@ export const TelegramFilled = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};

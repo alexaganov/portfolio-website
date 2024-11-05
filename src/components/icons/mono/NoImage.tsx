@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 export const NoImage = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox="0 0 20 20" fill="none" {...props}>
@@ -8,4 +8,4 @@ export const NoImage = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};

@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 
 export const LinkedinBold = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -30,4 +30,4 @@ export const LinkedinBold = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};

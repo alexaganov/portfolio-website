@@ -1,4 +1,4 @@
-import { SVGProps, useId } from 'react';
+import { SVGProps, useId } from "react";
 
 export const MagicSquareLogo = (props: SVGProps<SVGSVGElement>) => {
   const id = useId();

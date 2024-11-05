@@ -1,6 +1,9 @@
 export const scrollToElement = (
   element: Element,
-  { topOffset = 0, ...options }: { topOffset?: number } & Pick<ScrollToOptions, 'behavior'> = {},
+  {
+    topOffset = 0,
+    ...options
+  }: { topOffset?: number } & Pick<ScrollToOptions, "behavior"> = {}
 ) => {
   const elementPosition = element.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.scrollY - topOffset;
@@ -17,7 +20,8 @@ export const isFullyInView = (element: Element): boolean => {
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
-}
+};

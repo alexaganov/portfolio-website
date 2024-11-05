@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react'
+import React, { SVGProps } from "react";
 
 export const Copy = (props: SVGProps<SVGSVGElement>) => {
   return (
@@ -19,4 +19,4 @@ export const Copy = (props: SVGProps<SVGSVGElement>) => {
       />
     </svg>
   );
-}
+};
