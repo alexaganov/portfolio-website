@@ -7,20 +7,25 @@ const columns: {
   label: string;
   render: (params: { row: ResumeDataTechnology; rowIndex: number }) => ReactNode;
   headCellClassName?: string;
+  cellClassName?: string;
 }[ ] = [
   {
     id: 'num',
     label: '#',
+    headCellClassName: 'w-0',
+    cellClassName: 'nowrap',
     render: ({ rowIndex }) => `${rowIndex + 1}`.padStart(2, '0'),
   },
   {
     id: 'name',
     label: 'name',
+    cellClassName: 'nowrap',
     render: ({ row }) => <span className='text-primary'>{row.name}</span>,
   },
   {
     id: 'tags',
     label: 'tags',
+    cellClassName: 'text-right',
     render: ({ row }) => {
       return row.tags.join(', ');
     }
@@ -32,15 +37,15 @@ interface SkillsTableProps extends ComponentProps<'table'> {
 }
 
 const SkillsTable = ({ data, className, ...props }: SkillsTableProps) => {
-  const columnClassName = 'h-8 pr-5';
+  const columnClassName = 'pr-5';
 
   return (
     <table className={clsx('font-mono font-medium text-tertiary w-full text-sm', className)} {...props}>
        <thead>
           <tr>
-            {columns.map(({ id, label, headCellClassName }) => {
+            {columns.map(({ id, label, cellClassName, headCellClassName }) => {
               return (
-                <th className={clsx('text-left font-medium border-b border-secondary', columnClassName, headCellClassName)} key={id}>{label}</th>
+                <th className={clsx('text-left font-medium border-b border-secondary py-2', columnClassName, cellClassName, headCellClassName)} key={id}>{label}</th>
               )
             })}
           </tr>
@@ -51,8 +56,17 @@ const SkillsTable = ({ data, className, ...props }: SkillsTableProps) => {
               <tr key={row.id}>
                 {columns.map((column) => {
                   return (
-                    <td key={column.id} className={clsx(columnClassName, 'border-b border-border-primary py-1')}>{column.render({ row, rowIndex })}</td>
-                  )
+                    <td
+                      key={column.id}
+                      className={clsx(
+                        columnClassName,
+                        column.cellClassName,
+                        "border-b border-border-primary py-1 h-14"
+                      )}
+                    >
+                      {column.render({ row, rowIndex })}
+                    </td>
+                  );
                 })}
               </tr>
             )
@@ -71,16 +85,16 @@ const SkillsList = ({ data, className, ...props }: SkillsListProps) => {
     <ul className={clsx('font-mono text-sm font-medium flex flex-col', className)} {...props}>
       {data.map((item, i) => {
         return (
-          <li className='flex gap-2.5 py-1.5 border-b border-border-primary' key={item.id}>
+          <li className='flex gap-2.5 py-2 min-h-10 border-b border-border-primary' key={item.id}>
             <span className='text-text-quaternary'>
               {`${i + 1}`.padStart(2, '0')}
             </span>
 
-            <div className='flex flex-col gap-0.5'>
-              <p className='text-text-primary'>
+            <div className='flex flex-1 max-sm:flex-col sm:justify-between gap-1 sm:gap-2'>
+              <p className='text-text-primary whitespace-nowrap'>
                 {item.name}
               </p>
-              <p className='text-text-tertiary'>
+              <p className='text-text-tertiary max-sm:text-xs sm:text-right'>
                 {item.tags.join(', ')}
               </p>
             </div>
@@ -94,8 +108,8 @@ const SkillsList = ({ data, className, ...props }: SkillsListProps) => {
 const SkillsSectionContent = () => {
   return (
     <>
-      <SkillsTable className='max-lg:hidden' data={resume.technologies} />
-      <SkillsList className='lg:hidden' data={resume.technologies}/>
+      {/* <SkillsTable data={resume.technologies} /> */}
+      <SkillsList data={resume.technologies}/>
     </>
   )
 }

@@ -18,6 +18,7 @@ export interface ResumeData {
   isAvailableForHire: boolean;
   shortDescription: string;
   email: string;
+  resumeUrl: string;
   socialHandles: {
     telegram: string;
     linkedin: string;
@@ -51,7 +52,10 @@ export const resume: ResumeData = {
   firstName: 'Aleksandr',
   lastName: 'Aganov',
   isAvailableForHire: true,
-  shortDescription: 'I create accessible, user-friendly interfaces across all platforms, ensuring&nbsp;a&nbsp;smooth and enjoyable experience for every user',
+  resumeUrl: 'https://drive.google.com/file/d/1-pw9CbCZniBau8M0ieKegpzub6BHK7AR/view',
+  shortDescription: 'I create software that looks good and works well, so users can focus&nbsp;on what matters',
+  // shortDescription: 'I create functional, aesthetically pleasing interfaces that simplify complex interactions, helping users achieve their goals effortlessly',
+  // shortDescription: 'I create accessible, user-friendly interfaces across all platforms, ensuring&nbsp;a&nbsp;smooth and enjoyable experience for every user',
   // <br />For this, I primarily use React, TypeScript, Tailwind, and Next.js, along with other modern technologies.<br/>I also specialize in building solutions for Web3.
   position: 'Senior Frontend Engineer',
   email: 'aganov.dev@gmail.com',
@@ -162,7 +166,7 @@ export const resume: ResumeData = {
       "id": "tailwind",
       "name": "Tailwind",
       "description": "CSS framework",
-      "tags": ["frontend", "framework", "web", "styles", "css"]
+      "tags": ["frontend", "framework", "web", "styles"]
     },
     {
       "id": "mui",
@@ -196,9 +200,9 @@ export const resume: ResumeData = {
     },
     {
       "id": "styled-components",
-      "name": "StyledComponents",
+      "name": "Styled Components",
       "description": "CSS-in-JS Library",
-      "tags": ["frontend", "library",  "web", "styles", "css"]
+      "tags": ["frontend", "library",  "web", "styles"]
     },
     {
       "id": "gsap",
@@ -258,13 +262,13 @@ export const resume: ResumeData = {
       "id": "css",
       "name": "CSS",
       "description": "Style Sheet Language",
-      "tags": ["frontend", "styles", "css", "web"]
+      "tags": ["frontend", "styles", "web"]
     },
     {
       "id": "scss",
       "name": "SCSS",
       "description": "Style Sheet Language",
-      "tags": ["frontend", "styles", "css", "web"]
+      "tags": ["frontend", "styles", "web"]
     },
     {
       "id": "figma",
@@ -277,7 +281,7 @@ export const resume: ResumeData = {
       "id": "bootstrap",
       "name": "Bootstrap",
       "description": "CSS framework for responsive design.",
-      "tags": ["frontend", "styles", "framework", "css"]
+      "tags": ["frontend", "styles", "framework"]
     },
     {
       "id": "nx",

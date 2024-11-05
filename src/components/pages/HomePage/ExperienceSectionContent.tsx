@@ -20,9 +20,11 @@ const ExperienceSectionContent = () => {
 
         return (
           <li key={experience.id} className="flex gap-4">
-            <span
+            <a
+              target="_blank"
+              href={experience.websiteUrl}
               className={clsx(
-                "flex items-center size-9 justify-center rounded-lg border border-primary flex-shrink-0",
+                "flex items-center sticky top-5 size-9 justify-center hover:border-border-secondary transition-colors rounded-lg border border-primary flex-shrink-0",
                 {
                   "text-text-tertiary": isNoImage,
                   "text-text-secondary": !isNoImage,
@@ -30,7 +32,7 @@ const ExperienceSectionContent = () => {
               )}
             >
               <Icon className="size-5" />
-            </span>
+            </a>
 
             <div className="flex flex-col gap-4 pt-1">
               <div className="flex flex-col gap-1">

@@ -17,25 +17,36 @@ import AboutSectionContent from './AboutSectionContent';
 import { ExternalLink } from '@/components/icons/mono/ExternalLink';
 import { Github } from '@/components/icons/mono/Github';
 import ContactsNav, { ContactsNavProps } from './ContactsNav';
+import { TelegramFilled } from '@/components/icons/mono/TelegramFilled';
+import { LinkedinBold } from '@/components/icons/mono/LinkedinBold';
+import { GithubFilled } from '@/components/icons/mono/GithubFilled';
+import { EmailFilled } from '@/components/icons/mono/EmailFilled';
 
 const contacts: ContactsNavProps['items'] = [
   {
-    Icon: Telegram,
+    Icon: TelegramFilled,
     id: 'telegram',
     name: 'telegram',
     url: `https://t.me/${resume.socialHandles.telegram}`
   },
   {
-    Icon: Linkedin,
+    Icon: LinkedinBold,
     id: 'linkedin',
     name: 'linkedin',
     url: `https://www.linkedin.com/in/${resume.socialHandles.linkedin}`
   },
   {
-    Icon: Email,
+    Icon: GithubFilled,
+    id: 'github',
+    name: 'github',
+    url: `https://github.com/${resume.socialHandles.github}`
+  },
+  {
+    Icon: EmailFilled,
     id: 'email',
     name: resume.email,
-    url: `mailto:${resume.email}`
+    url: `mailto:${resume.email}`,
+    copy: resume.email
   }
 ]
 
@@ -70,7 +81,7 @@ export const HomePage = () => {
         >
           <div
             className={clsx(
-              "relative flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-8 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
+              "relative flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
             )}
           >
 
@@ -94,7 +105,7 @@ export const HomePage = () => {
               </p>
 
               <p
-                className="leading-[1.75] text-text-secondary mb-8 font-light"
+                className="leading-[1.75] text-text-secondary mb-6 font-light text-balance"
                 dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
               />
 
@@ -105,7 +116,8 @@ export const HomePage = () => {
             <MainNavDesktop className="my-auto max-lg:hidden" />
 
             <a
-              href="#"
+              target="_blank"
+              href={resume.resumeUrl}
               className="text-sm transition-all items-center max-lg:bottom-24 inline-flex gap-1.5 font-mono hover:underline text-text-primary"
             >
               View Resume to Learn More
@@ -125,7 +137,7 @@ export const HomePage = () => {
             />
 
             <footer className="mt-20">
-              <p className="text-sm font-mono text-right text-text-tertiary">
+              <p className="text-sm font-mono text-right text-text-quaternary">
                 Designed and Developed by Me
                 {' '}
                 <a
