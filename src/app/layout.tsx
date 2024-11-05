@@ -19,14 +19,17 @@ const kodeMono = Kode_Mono({
 
 const title = "Aleksandr Aganov | Senior Frontend Developer & Web3 Specialist";
 const description =
-  "Experienced Frontend Developer with expertise in React, JavaScript, and Web3 development. Specializing in responsive, pixel-perfect UIs for web, mobile, and desktop applications. Available for remote roles.";
+  "Experienced Frontend Developer with expertise in React, TypeScript, and Web3 development. Specializing in responsive, pixel-perfect UIs for web, mobile, and desktop applications. Available for remote roles.";
 const author = "Aleksandr Aganov";
-const bannerImageUrl = "https://imgur.com/a/S6jvlyT";
+const previewImageUrl = "/preview.png";
 
 export const metadata: Metadata = {
   title,
   authors: {
     name: author,
+  },
+  alternates: {
+    canonical: "/",
   },
   applicationName: title,
   creator: author,
@@ -55,15 +58,16 @@ export const metadata: Metadata = {
     firstName: resume.firstName,
     lastName: resume.lastName,
     emails: resume.email,
+    url: "/",
     images: {
-      url: bannerImageUrl,
+      url: previewImageUrl,
     },
   },
   twitter: {
     title,
     description,
     images: {
-      url: bannerImageUrl,
+      url: previewImageUrl,
     },
     creator: author,
     card: "summary_large_image",
