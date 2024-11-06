@@ -38,7 +38,7 @@ const CopyButton = ({ className, label, value, ...props }: CopyButtonProps) => {
       <span
         aria-hidden="true"
         className={clsx(
-          "absolute flex h-full transform-gpu items-center shadow-[-10px_0_10px] shadow-bg-primary  rounded-full gap-2 right-0 text-success transition-transform ease-in-out bg-bg-primary",
+          "absolute select-none flex h-full transform-gpu items-center shadow-[-10px_0_10px] shadow-bg-primary  rounded-full gap-2 right-0 text-success transition-transform ease-in-out bg-bg-primary",
           {
             "translate-y-full opacity-0": !isCopied,
           }

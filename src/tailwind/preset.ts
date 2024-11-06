@@ -43,6 +43,14 @@ const config: Partial<OptionalConfig> = {
       });
 
       addComponents({
+        ".gsap-hide-items": {
+          ".gsap-item": {
+            opacity: "0",
+          },
+        },
+      });
+
+      addComponents({
         ".prose": {
           lineHeight: "1.75",
           fontSize: "14px",

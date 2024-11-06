@@ -1,7 +1,7 @@
 "use client";
 import { resume } from "@/data";
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 import HomePageSections from "./HomePageSections";
 import SectionNavProvider, { SectionNavSection } from "./SectionNavProvider";
 import MainNavDesktop from "./MainNavDesktop";
@@ -17,6 +17,12 @@ import { LinkedinBold } from "@/components/icons/mono/LinkedinBold";
 import { GithubFilled } from "@/components/icons/mono/GithubFilled";
 import { EmailFilled } from "@/components/icons/mono/EmailFilled";
 import CopyButton from "@/components/common/CopyButton";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 const contacts: ContactsNavProps["items"] = [
   {
@@ -64,10 +70,111 @@ const sections: SectionNavSection[] = [
   },
 ];
 
+const IS_ANIMATION_ENABLED = true;
+
 export const HomePage = () => {
+  const [isAnimationPlaying, setIsAnimationPlaying] =
+    useState(IS_ANIMATION_ENABLED);
+
+  useGSAP(() => {
+    if (!IS_ANIMATION_ENABLED) {
+      return;
+    }
+
+    const rootTimeline = gsap.timeline({
+      delay: 0.2,
+      paused: true,
+    });
+
+    const primaryItemsTimeline = gsap.timeline({
+      paused: true,
+    });
+
+    primaryItemsTimeline.fromTo(
+      ['[data-gsap-target="title-word"], [data-gsap-target="subtitle-word"]'],
+      {
+        yPercent: 100,
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 1.3,
+        stagger: 0.3,
+      }
+    );
+
+    const secondaryItemsTimeline = gsap.timeline({
+      paused: true,
+    });
+
+    secondaryItemsTimeline.fromTo(
+      '[data-gsap-target="secondary"]',
+      {
+        y: 10,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.2,
+      }
+    );
+
+    rootTimeline
+      .to(primaryItemsTimeline, {
+        progress: 1,
+        duration: primaryItemsTimeline.duration(),
+        ease: "power4.out",
+      })
+      .to(
+        secondaryItemsTimeline,
+        {
+          progress: 1,
+          duration: secondaryItemsTimeline.duration(),
+          ease: "power4.out",
+        },
+        "-=1.4"
+      );
+
+    const isDesktop = matchMedia("(min-width: 1024px)").matches;
+
+    if (isDesktop) {
+      rootTimeline.fromTo(
+        '[data-gsap-target="content"]',
+        {
+          x: 10,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power4.out",
+        },
+        "<"
+      );
+    }
+
+    // for some reason duration of animation is bigger than animation itself
+    // so we can't set onComplete directly on timeline
+    // that's why we added callback before specified time, until duration ends
+    rootTimeline.add(() => {
+      setIsAnimationPlaying(false);
+    }, "-=1.4");
+
+    rootTimeline.play();
+  });
+
   return (
     <SectionNavProvider sections={sections}>
-      <main className="relative lg:grid lg:grid-cols-2">
+      <main
+        className={clsx("relative lg:grid lg:grid-cols-2", {
+          "gsap-hide-items": isAnimationPlaying,
+          "h-screen overflow-hidden": isAnimationPlaying,
+        })}
+      >
         <header
           id="header"
           className={clsx(
@@ -76,12 +183,15 @@ export const HomePage = () => {
         >
           <div
             className={clsx(
-              "relative flex flex-1 pb-24 pt-10 px-5 justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
+              "relative flex flex-1 pb-24 pt-10 px-5 items-start justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
             )}
           >
             <div className="flex flex-col items-start">
               <div className="flex gap-4 items-center mb-3.5">
-                <span className="rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs ">
+                <span
+                  data-gsap-target="secondary"
+                  className="gsap-item rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs"
+                >
                   <span className="relative flex text-success h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
                     <span className="relative inline-flex rounded-full w-full h-full bg-current"></span>
@@ -90,31 +200,80 @@ export const HomePage = () => {
                 </span>
               </div>
 
-              <h1 className="uppercase font-bold mb-1 text-2xl sm:text-4xl tracking-wider sm:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
-                {resume.firstName} {resume.lastName}
-              </h1>
+              <div className="mb-1 sm:mb-2">
+                <h1 className="overflow-hidden relative uppercase font-bold text-2xl sm:text-4xl tracking-wider">
+                  {[resume.firstName, resume.lastName].map((word, i, items) => {
+                    const isLast = i === items.length - 1;
 
-              <p className="capitalize text-lg mb-4 sm:text-2xl sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
-                {resume.position}
-              </p>
+                    return (
+                      <span
+                        data-gsap-target="title-word"
+                        key={word}
+                        className="gsap-item inline-block whitespace-pre"
+                      >
+                        {word}
+                        {!isLast && " "}
+                      </span>
+                    );
+                  })}
+                </h1>
+              </div>
 
-              <p
-                className="leading-[1.75] text-text-secondary mb-6 font-light text-balance"
-                dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
-              />
+              <div className="mb-4 overflow-hidden sm:mb-6">
+                <p className="overflow-hidden relative text-lg sm:text-2xl">
+                  {resume.position.split(" ").map((word, i, items) => {
+                    const isLast = i === items.length - 1;
+
+                    return (
+                      <span
+                        data-gsap-target="subtitle-word"
+                        key={word}
+                        className="gsap-item inline-block whitespace-pre"
+                      >
+                        {word}
+                        {!isLast && " "}
+                      </span>
+                    );
+                  })}
+                </p>
+              </div>
+
+              <div className="mb-6">
+                <p
+                  data-gsap-target="secondary"
+                  className="gsap-item leading-[1.75] text-text-secondary font-light text-balance"
+                  dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
+                />
+              </div>
 
               <div className="flex flex-col gap-y-4 gap-x-8">
-                <ContactsNav aria-label="Contacts" items={contacts} />
-                <CopyButton value={resume.email} />
+                <ContactsNav
+                  className="gsap-item"
+                  data-gsap-target="secondary"
+                  aria-label="Contacts"
+                  items={contacts}
+                />
+
+                <CopyButton
+                  className="gsap-item"
+                  data-gsap-target="secondary"
+                  value={resume.email}
+                />
               </div>
             </div>
 
-            <MainNavDesktop className="my-auto max-lg:hidden" />
+            <div className="max-lg:hidden my-auto">
+              <MainNavDesktop
+                className="gsap-item"
+                data-gsap-target="secondary"
+              />
+            </div>
 
             <a
+              data-gsap-target="secondary"
               target="_blank"
               href={resume.resumeUrl}
-              className="text-sm transition-all items-center max-lg:bottom-24 inline-flex gap-1.5 font-mono hover:underline text-text-primary"
+              className="gsap-item text-sm transition-colors items-center inline-flex gap-1.5 font-mono hover:underline text-text-primary"
             >
               View Resume to Learn More
               <ExternalLink className="size-4" />
@@ -122,7 +281,10 @@ export const HomePage = () => {
           </div>
         </header>
 
-        <div className="bg-bg-secondary relative items-center flex flex-col rounded-t-xl lg:rounded-l-xl">
+        <div
+          data-gsap-target="content"
+          className="gsap-item bg-bg-secondary relative items-center flex flex-col rounded-t-xl lg:rounded-l-xl"
+        >
           <div className="max-lg:hidden sticky top-0 pointer-events-none w-full h-0">
             <div className="h-[8.5rem] bg-gradient-to-t from-transparent to-bg-secondary" />
           </div>
@@ -155,7 +317,10 @@ export const HomePage = () => {
 
       <div className="fixed bottom-0 w-full h-24 flex items-center lg:hidden">
         <div className="absolute w-full h-full left-0 z-0 top-0 bg-gradient-to-b from-transparent to-bg-primary" />
-        <MainNavMobile className="relative w-full max-w-[600px] px-5 md:px-10 mx-auto" />
+        <MainNavMobile
+          data-gsap-target="secondary"
+          className="relative gsap-item w-full max-w-[600px] px-5 md:px-10 mx-auto"
+        />
       </div>
     </SectionNavProvider>
   );

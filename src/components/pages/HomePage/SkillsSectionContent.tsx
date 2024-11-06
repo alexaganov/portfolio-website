@@ -1,6 +1,6 @@
 import { resume, ResumeDataTechnology } from "@/data";
 import clsx from "clsx";
-import React, { ComponentProps } from "react";
+import React, { ComponentProps, useState } from "react";
 
 interface SkillsListProps extends ComponentProps<"ul"> {
   data: ResumeDataTechnology[];
