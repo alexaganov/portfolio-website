@@ -21,7 +21,8 @@ const title = "Aleksandr Aganov | Senior Frontend Engineer";
 const description =
   "Learn about Aleksandr Aganov, a frontend developer with a focus on practical experience and technical skills. Explore a comprehensive overview of professional background, skills, and personal insights";
 const author = "Aleksandr Aganov";
-const previewImageUrl = "/preview.png";
+const host = process.env.NEXT_PUBLIC_HOST || "";
+const previewImageUrl = `${host}/preview.png`;
 
 export const metadata: Metadata = {
   title,
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     name: author,
   },
   alternates: {
-    canonical: "/",
+    canonical: host,
   },
   applicationName: title,
   creator: author,
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
     firstName: resume.firstName,
     lastName: resume.lastName,
     emails: resume.email,
-    url: "/",
+    url: host,
     images: {
       url: previewImageUrl,
     },
