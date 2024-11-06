@@ -19,11 +19,6 @@ export interface ResumeData {
   shortDescription: string;
   email: string;
   resumeUrl: string;
-  // socialHandles: {
-  //   telegram: string;
-  //   linkedin: string;
-  //   github: string;
-  // },
   socials: {
     telegram: string;
     linkedin: string;
