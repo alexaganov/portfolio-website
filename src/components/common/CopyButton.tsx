@@ -9,7 +9,7 @@ interface CopyButtonProps extends ComponentProps<"button"> {
   label?: string;
 }
 
-const CopyButton = ({ className, label, value }: CopyButtonProps) => {
+const CopyButton = ({ className, label, value, ...props }: CopyButtonProps) => {
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 1000 });
 
   return (
@@ -19,9 +19,10 @@ const CopyButton = ({ className, label, value }: CopyButtonProps) => {
       }}
       aria-label={`Copy "${value}"`}
       className={clsx(
-        "flex gap-2 relative text-sm items-center overflow-hidden font-mono hover:text-text-primary text-text-tertiary flex-shrink-0",
+        "flex gap-2 relative text-sm transition-colors items-center overflow-hidden font-mono hover:text-text-primary text-text-tertiary flex-shrink-0",
         className
       )}
+      {...props}
     >
       {label || value}
       <Copy

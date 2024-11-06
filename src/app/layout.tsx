@@ -17,9 +17,9 @@ const kodeMono = Kode_Mono({
   display: "swap",
 });
 
-const title = "Aleksandr Aganov | Senior Frontend Developer & Web3 Specialist";
+const title = "Aleksandr Aganov | Senior Frontend Engineer";
 const description =
-  "Experienced Frontend Developer with expertise in React, TypeScript, and Web3 development. Specializing in responsive, pixel-perfect UIs for web, mobile, and desktop applications. Available for remote roles.";
+  "Learn about Aleksandr Aganov, a frontend developer with a focus on practical experience and technical skills. Explore a comprehensive overview of professional background, skills, and personal insights";
 const author = "Aleksandr Aganov";
 const previewImageUrl = "/preview.png";
 
