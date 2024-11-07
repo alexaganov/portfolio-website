@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Alexandria, Kode_Mono } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import { Person, WithContext } from "schema-dts";
+import { ProfilePage, WithContext } from "schema-dts";
 import { resume } from "@/data";
 
 const alexandriaSans = Alexandria({
@@ -79,19 +79,50 @@ export const metadata: Metadata = {
   },
 };
 
-const JsonLD = () => {
-  const jsonLd: WithContext<Person> = {
-    "@context": "https://schema.org",
+const fullName = `${resume.firstName} ${resume.lastName}`;
+
+const jsonLd: WithContext<ProfilePage> = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  dateCreated: new Date("01-08-2024").toISOString(),
+  dateModified: new Date().toISOString(),
+  name: `${fullName}'s Personal Website`,
+  description:
+    "Explore a comprehensive overview of my professional background, technical skills, and personal insights into web development and software engineering.",
+  inLanguage: "en",
+  author: {
     "@type": "Person",
-    name: `${resume.firstName} ${resume.lastName}`,
+    name: fullName,
+  },
+  mainEntity: {
+    "@type": "Person",
+    name: fullName,
     givenName: resume.firstName,
     familyName: resume.lastName,
+    alternateName: "Alex",
     jobTitle: "Senior Frontend Developer",
-    email: resume.email,
-    nationality: "Russian",
+    email: `mailto:${resume.email}`,
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Don State Technical University",
+      description: "Graduated with a bachelor's degree in Computer Science",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Philippines",
+    },
+    nationality: {
+      "@type": "Country",
+      name: "Russia",
+    },
+    knowsLanguage: "English, Russian",
     sameAs: Object.values(resume.socials),
-  };
+    description:
+      "An experienced software engineer specializing in web development.",
+  },
+};
 
+const JsonLD = () => {
   return (
     <script
       type="application/ld+json"
