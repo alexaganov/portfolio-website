@@ -40,6 +40,10 @@ const config: Partial<OptionalConfig> = {
           color: colors["bg-primary"],
           backgroundColor: "rgba(255, 255, 255, 0.6)",
         },
+
+        "*:focus-visible": {
+          outlineOffset: "4px",
+        },
       });
 
       addComponents({

@@ -99,7 +99,7 @@ const jsonLd: WithContext<ProfilePage> = {
     name: fullName,
     givenName: resume.firstName,
     familyName: resume.lastName,
-    alternateName: "Alex",
+    alternateName: ["Alex", "Alexsandr", "Alexsander", "Aleks", "Aleksander"],
     jobTitle: "Senior Frontend Developer",
     email: `mailto:${resume.email}`,
     alumniOf: {

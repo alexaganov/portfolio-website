@@ -162,7 +162,7 @@ export const HomePage = () => {
     // that's why we added callback before specified time, until duration ends
     rootTimeline.add(() => {
       setIsAnimationPlaying(false);
-    }, "-=1.4");
+    }, "-=1.25");
 
     rootTimeline.play();
   });
@@ -183,22 +183,26 @@ export const HomePage = () => {
         >
           <div
             className={clsx(
-              "relative flex flex-1 pb-24 pt-10 px-5 items-start justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-[7.5rem] lg:justify-between lg:ml-auto"
+              "relative flex flex-1 pb-24 pt-20 px-5 items-start justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-36 lg:justify-between lg:ml-auto"
             )}
           >
-            <div className="flex flex-col items-start">
-              <div className="flex gap-4 items-center mb-3.5">
-                <span
-                  data-gsap-target="secondary"
-                  className="gsap-item rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs"
-                >
-                  <span className="relative flex text-success h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
-                    <span className="relative inline-flex rounded-full w-full h-full bg-current"></span>
+            <div className="relative flex flex-col items-start">
+              {/* making it absolute to not depend on hight of this element
+              for calc top padding of the right content on large devices */}
+              {resume.isAvailableForHire && (
+                <div className="absolute flex gap-4 items-center left-0 -translate-y-full pb-3.5">
+                  <span
+                    data-gsap-target="secondary"
+                    className="gsap-item rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success px-2.5 py-1 min-h-7 text-xs"
+                  >
+                    <span className="relative flex text-success h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+                      <span className="relative inline-flex rounded-full w-full h-full bg-current"></span>
+                    </span>
+                    available for hire
                   </span>
-                  available for hire
-                </span>
-              </div>
+                </div>
+              )}
 
               <div className="mb-1 sm:mb-2">
                 <h1 className="overflow-hidden relative uppercase font-bold text-2xl sm:text-4xl tracking-wider">
@@ -290,7 +294,7 @@ export const HomePage = () => {
           </div>
 
           <div className="pb-24 max-w-[600px] lg:mr-auto lg:pb-16 px-5 md:px-10">
-            <HomePageSections sectionClassName="pt-20 lg:pt-[10.125rem]" />
+            <HomePageSections sectionClassName="pt-20 lg:pt-36" />
 
             <footer className="mt-20 flex items-center lg:items-end flex-col gap-12">
               <div className="lg:hidden flex flex-col gap-4 items-center">
