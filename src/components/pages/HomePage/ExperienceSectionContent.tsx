@@ -1,3 +1,4 @@
+import SafeExternalLink from "@/components/common/SafeExternalLink";
 import { ArrowUpRight } from "@/components/icons/mono/ArrowUpRight";
 import { NoImage } from "@/components/icons/mono/NoImage";
 import { getCompanyLogoById, resume, ResumeData } from "@/data";
@@ -22,11 +23,13 @@ const ExperienceSectionContent = () => {
           ? formatDate(experience.endedAt, "MMM yyyy")
           : "present";
 
+        const ariaLabel = `Open ${experience.companyName}'s website`;
+
         return (
           <li key={experience.id} className="flex gap-4">
-            <a
-              target="_blank"
+            <SafeExternalLink
               href={experience.websiteUrl}
+              aria-label={ariaLabel}
               className={clsx(
                 "flex items-center sticky top-5 size-9 justify-center hover:border-border-secondary transition-colors rounded-lg border border-border-primary flex-shrink-0",
                 {
@@ -36,21 +39,24 @@ const ExperienceSectionContent = () => {
               )}
             >
               <Icon className="size-5" />
-            </a>
+            </SafeExternalLink>
 
             <div className="flex flex-col gap-4 pt-1">
               <div className="flex flex-col gap-1">
                 <h3 className="text-lg font-bold">
                   {experience.websiteUrl && (
-                    <a
+                    <SafeExternalLink
                       href={experience.websiteUrl}
+                      aria-label={ariaLabel}
                       className="group inline-flex items-center hover:underline gap-1.5"
-                      target="_blank"
                     >
                       {experience.companyName}
 
-                      <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </SafeExternalLink>
                   )}
 
                   {!experience.websiteUrl && experience.companyName}

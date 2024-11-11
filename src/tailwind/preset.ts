@@ -30,6 +30,11 @@ const config: Partial<OptionalConfig> = {
       sans: ["var(--font-sans-serif-primary)", "sans-serif"],
       mono: ["var(--font-mono-primary)", "monospace"],
     },
+    keyframes: {
+      "bg-move-right": {
+        "100%": { backgroundPosition: "0 100%" },
+      },
+    },
   },
   plugins: [
     plugin(({ addBase, addComponents }) => {
@@ -47,6 +52,11 @@ const config: Partial<OptionalConfig> = {
       });
 
       addComponents({
+        ".mask-image-fade-b": {
+          "mask-image":
+            "linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)",
+        },
+
         ".gsap-hide-items": {
           ".gsap-item": {
             opacity: "0",

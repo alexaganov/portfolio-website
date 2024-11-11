@@ -103,6 +103,7 @@ export const resume: ResumeData = {
         "git",
         "gitlab",
         "webpack",
+        "rollup",
         "babel",
         "eslint",
       ],
@@ -176,6 +177,7 @@ export const resume: ResumeData = {
         "html",
         "github",
         "pug",
+        "bem",
       ],
     },
     {
@@ -207,6 +209,7 @@ export const resume: ResumeData = {
         "git",
         "html",
         "github",
+        "bem",
       ],
     },
   ],
@@ -260,6 +263,11 @@ export const resume: ResumeData = {
       tags: ["frontend", "library", "state-management"],
     },
     {
+      id: "zustand",
+      name: "Zustand",
+      tags: ["frontend", "library", "state-management"],
+    },
+    {
       id: "react-query",
       name: "React Query",
       description: "Data-fetching library for React",
@@ -281,6 +289,11 @@ export const resume: ResumeData = {
       id: "gsap",
       name: "GSAP",
       description: "High-performance web animations library",
+      tags: ["frontend", "library", "web", "animation"],
+    },
+    {
+      id: "react-spring",
+      name: "React Spring",
       tags: ["frontend", "library", "web", "animation"],
     },
     {
@@ -349,7 +362,11 @@ export const resume: ResumeData = {
       description: "Design Tool",
       tags: ["design", "app"],
     },
-
+    {
+      id: "bem",
+      name: "BEM",
+      tags: ["frontend", "methodology"],
+    },
     {
       id: "bootstrap",
       name: "Bootstrap",
@@ -395,6 +412,11 @@ export const resume: ResumeData = {
       id: "webpack",
       name: "Webpack",
       description: "Build Tool",
+      tags: ["devops", "build-tool"],
+    },
+    {
+      id: "rollup",
+      name: "Rollup",
       tags: ["devops", "build-tool"],
     },
     {

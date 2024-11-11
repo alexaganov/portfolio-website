@@ -60,7 +60,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                       "flex h-full items-center justify-center text-center w-full font-mono text-xs uppercase transition-colors hover:text-text-primary",
                       {
                         "text-text-primary": isActive,
-                        "text-text-tertiary": !isActive,
+                        "text-text-secondary": !isActive,
                       }
                     )}
                   >
@@ -93,12 +93,15 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
             .getElementById(activeSection ? "header" : sections[0].id)
             ?.scrollIntoView();
         }}
+        aria-label={
+          activeSection ? "Scroll to the top" : "Scroll to the next section"
+        }
         href="#"
         className={clsx(
           "aspect-square h-14 items-center justify-center  ease-in-out flex flex-shrink-0 rounded-full",
           {
             "text-text-primary bg-bg-quaternary": hasActiveSection,
-            "text-text-tertiary bg-bg-tertiary": !hasActiveSection,
+            "text-text-secondary bg-bg-tertiary": !hasActiveSection,
           }
         )}
       >

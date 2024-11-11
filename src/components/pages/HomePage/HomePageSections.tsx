@@ -62,14 +62,19 @@ const HomePageSections = ({
             key={id}
             className={clsx("flex flex-col", sectionClassName)}
           >
-            <header className="mb-6 flex flex-col gap-2">
-              <span
+            <header className="mb-6 flex gap-2 flex-col">
+              <div
+                role="presentation"
                 aria-hidden="true"
-                className="text-4xl font-mono text-text-quaternary"
+                className="h-10 select-none"
               >
-                {`${i + 1}`.padStart(3, "0")}
-              </span>
-              <h2 className="text-2xl uppercase tracking-wider">{name}</h2>
+                <span className="font-mono block mask-image-fade-b text-text-tertiary/5 font-thin tracking-tighter leading-none text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6">
+                  {`${i + 1}`.padStart(3, "0")}
+                </span>
+              </div>
+              <h2 className="relative text-2xl uppercase tracking-wider">
+                {name}
+              </h2>
             </header>
 
             {Content && <Content />}

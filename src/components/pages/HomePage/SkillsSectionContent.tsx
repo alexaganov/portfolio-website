@@ -18,7 +18,7 @@ const SkillsList = ({ data, className, ...props }: SkillsListProps) => {
             className="flex gap-2.5 py-2 min-h-10 border-b border-border-primary"
             key={item.id}
           >
-            <span className="text-text-quaternary">
+            <span className="text-text-tertiary">
               {`${i + 1}`.padStart(2, "0")}
             </span>
 
