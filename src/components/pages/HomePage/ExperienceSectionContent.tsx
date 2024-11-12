@@ -29,7 +29,7 @@ const ExperienceSectionContent = () => {
           <li key={experience.id} className="flex gap-4">
             <SafeExternalLink
               href={experience.websiteUrl}
-              aria-label={ariaLabel}
+              aria-label={experience.websiteUrl ? ariaLabel : undefined}
               className={clsx(
                 "flex items-center sticky top-5 size-9 justify-center hover:border-border-secondary transition-colors rounded-lg border border-border-primary flex-shrink-0",
                 {

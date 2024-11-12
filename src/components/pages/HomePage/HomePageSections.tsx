@@ -63,12 +63,12 @@ const HomePageSections = ({
             className={clsx("flex flex-col", sectionClassName)}
           >
             <header className="mb-6 flex gap-2 flex-col">
-              <div
-                role="presentation"
-                aria-hidden="true"
-                className="h-10 select-none"
-              >
-                <span className="font-mono block mask-image-fade-b text-text-tertiary/5 font-thin tracking-tighter leading-none text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6">
+              <div className="h-10 select-none">
+                <span
+                  role="presentation"
+                  aria-hidden="true"
+                  className="font-mono block mask-image-fade-b text-text-tertiary/5 font-thin tracking-tighter leading-none text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6"
+                >
                   {`${i + 1}`.padStart(3, "0")}
                 </span>
               </div>
