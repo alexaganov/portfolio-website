@@ -73,14 +73,14 @@ const config: Partial<OptionalConfig> = {
 
           ul: {
             position: "relative",
-            paddingLeft: "1.5rem",
+            paddingLeft: "1.25rem",
 
             "li + li": {
               marginTop: "0.25rem",
             },
 
             "li::before": {
-              content: "'✦'",
+              content: "'▸'",
               position: "absolute",
               left: "0",
               color: colors["text-quaternary"],

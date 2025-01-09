@@ -20,6 +20,7 @@ import CopyButton from "@/components/common/CopyButton";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Leetcode } from "@/components/icons/mono/Leetcode";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +43,12 @@ const contacts: ContactsNavProps["items"] = [
     id: "github",
     name: "github",
     url: resume.socials.github,
+  },
+  {
+    Icon: Leetcode,
+    id: "leetcode",
+    name: "leetcode",
+    url: resume.socials.leetcode,
   },
   {
     Icon: EmailFilled,
@@ -187,7 +194,7 @@ export const HomePage = () => {
             )}
           >
             <div className="relative flex flex-col items-start">
-              {/* making it absolute to not depend on hight of this element
+              {/* making it absolute to not depend on height of this element
               for calc top padding of the right content on large devices */}
               {resume.isAvailableForHire && (
                 <div className="absolute flex gap-4 items-center left-0 -translate-y-full pb-3.5">
@@ -250,7 +257,7 @@ export const HomePage = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-y-4 gap-x-8">
+              <div className="flex items-start flex-col gap-y-4 gap-x-8">
                 <ContactsNav
                   className="gsap-item"
                   data-gsap-target="secondary"
