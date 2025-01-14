@@ -1,45 +1,205 @@
 import { resume, ResumeDataTechnology } from "@/data";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import clsx from "clsx";
-import React, { ComponentProps } from "react";
+import React, { useMemo, useRef, useState } from "react";
+import { SkillListItem, SkillsList } from "./SkillsList";
 
-interface SkillsListProps extends ComponentProps<"ul"> {
-  data: ResumeDataTechnology[];
-}
+const SKILLS_TAG_FILTER_ALL_ID = "all";
 
-const SkillsList = ({ data, className, ...props }: SkillsListProps) => {
-  return (
-    <ul
-      className={clsx("font-mono text-sm font-medium flex flex-col", className)}
-      {...props}
-    >
-      {data.map((item, i) => {
-        return (
-          <li
-            className="flex gap-2.5 py-2 min-h-10 border-b border-border-primary"
-            key={item.id}
-          >
-            <span className="text-text-tertiary">
-              {`${i + 1}`.padStart(2, "0")}
-            </span>
+const getSkillsTagFilters = (
+  skills: ResumeDataTechnology[]
+): { id: string; total: number }[] => {
+  const uniqueSkillTags = skills.reduce((acc, skill) => {
+    skill.tags.forEach((tag) => {
+      acc.set(tag, (acc.get(tag) ?? 0) + 1);
+    });
 
-            <div className="flex flex-1 max-sm:flex-col sm:justify-between gap-1 sm:gap-2">
-              <p className="text-text-primary whitespace-nowrap">{item.name}</p>
-              <p className="text-text-tertiary max-sm:text-xs sm:text-right">
-                {item.tags.join(", ")}
-              </p>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
-  );
+    return acc;
+  }, new Map<string, number>());
+
+  const skillsTagFilters = [
+    {
+      id: SKILLS_TAG_FILTER_ALL_ID,
+      total: skills.length,
+    },
+    ...Array.from(uniqueSkillTags, ([id, total]) => {
+      return {
+        id,
+        total,
+      };
+    }),
+  ];
+
+  skillsTagFilters.sort((a, b) => b.total - a.total);
+
+  return skillsTagFilters;
+};
+
+const transformTechnologiesToSkillList = (
+  data: ResumeDataTechnology[],
+  highlightedTagsIds: string[]
+): SkillListItem[] => {
+  return data.map((skill, i) => {
+    const isHighlighted = !highlightedTagsIds.length
+      ? true
+      : skill.tags.some((tag) => highlightedTagsIds.includes(tag));
+
+    return {
+      id: skill.id,
+      position: i + 1,
+      name: skill.name,
+      isHighlighted,
+      tags: skill.tags,
+    };
+  });
+};
+
+// const filterSkillList = (
+//   skillList: SkillListItem[],
+//   activeTagsIds: string[]
+// ) => {
+//   if (!activeTagsIds.length) {
+//     return skillList;
+//   }
+
+//   return skillList.filter((skill) => {
+//     return skill.tags.some((tag) => activeTagsIds.includes(tag));
+//   });
+// };
+
+// sorts by last added tag
+const sortSkillListByHighlighted = (
+  skillList: SkillListItem[],
+  highlightedTagsIds: string[]
+) => {
+  return skillList.sort((a, b) => {
+    const aLastTagIndex = highlightedTagsIds.findLastIndex((tagId) => {
+      return a.tags.includes(tagId);
+    });
+    const bLastTagIndex = highlightedTagsIds.findLastIndex((tagId) => {
+      return b.tags.includes(tagId);
+    });
+
+    return bLastTagIndex - aLastTagIndex;
+
+    // if (!a.isHighlighted && b.isHighlighted) {
+    //   return 1;
+    // } else if (a.isHighlighted && !b.isHighlighted) {
+    //   return -1;
+    // }
+
+    // return 0;
+  });
 };
 
 const SkillsSectionContent = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const [activeSkillTagFilterIds, setActiveSkillTagFilterIds] = useState<
+    string[]
+  >([]);
+  const [isSafeSortAvailable, setIsSafeSortAvailable] = useState(false);
+
+  const skillsTagFilters = useMemo(
+    () => getSkillsTagFilters(resume.technologies),
+    []
+  );
+  const skillListItems = useMemo(
+    () =>
+      transformTechnologiesToSkillList(
+        resume.technologies,
+        activeSkillTagFilterIds
+      ),
+    [activeSkillTagFilterIds]
+  );
+
+  const sortedSkillItems = useMemo(
+    () => sortSkillListByHighlighted(skillListItems, activeSkillTagFilterIds),
+    [skillListItems, activeSkillTagFilterIds]
+  );
+
+  const visibleSkillItemsRef = useRef<SkillListItem[]>(sortedSkillItems);
+
+  // work around to show updated items only when list is not visible for user
+  if (isSafeSortAvailable) {
+    visibleSkillItemsRef.current = sortedSkillItems;
+  }
+
+  const visibleSkillItems = visibleSkillItemsRef.current;
+
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  const getSkillTagFilterClickHandler = (skillTagFilterId: string) => {
+    return contextSafe(() => {
+      const tl = gsap.timeline();
+
+      setIsSafeSortAvailable(false);
+
+      setActiveSkillTagFilterIds((oldFilter) => {
+        if (skillTagFilterId === SKILLS_TAG_FILTER_ALL_ID) {
+          return [];
+        }
+
+        if (oldFilter.includes(skillTagFilterId)) {
+          return oldFilter.filter(
+            (oldFilterTechTag) => oldFilterTechTag !== skillTagFilterId
+          );
+        }
+
+        return [...oldFilter, skillTagFilterId];
+      });
+
+      tl.to(listRef.current, {
+        opacity: 0,
+        y: "1rem",
+      });
+
+      tl.call(() => {
+        setIsSafeSortAvailable(true);
+      });
+
+      tl.to(listRef.current, {
+        opacity: 1,
+        y: "0",
+      });
+    });
+  };
+
+  const isSkillTagFilterActive = (skillsTagFilterId: string) => {
+    return (
+      (skillsTagFilterId === SKILLS_TAG_FILTER_ALL_ID &&
+        !activeSkillTagFilterIds.length) ||
+      activeSkillTagFilterIds.includes(skillsTagFilterId)
+    );
+  };
+
   return (
-    <>
-      <SkillsList data={resume.technologies} />
-    </>
+    <div ref={containerRef} className="flex relative flex-col">
+      <div className="flex flex-col gap-2 mb-4 relative">
+        <span className="text-xs text-text-tertiary font-mono">Sort By:</span>
+        <ul className="flex overflow-hidden gap-2 rounded-lg flex-wrap text-xs font-mono border-border-primary">
+          {skillsTagFilters.map((skillsTagFilter) => {
+            const isActive = isSkillTagFilterActive(skillsTagFilter.id);
+
+            return (
+              <li className="flex flex-shrink-0" key={skillsTagFilter.id}>
+                <button
+                  className={clsx("btn btn-pill btn-sm btn-outline-primary", {
+                    "btn-outline-primary-selected": isActive,
+                  })}
+                  onClick={getSkillTagFilterClickHandler(skillsTagFilter.id)}
+                >
+                  {skillsTagFilter.id} ({skillsTagFilter.total})
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <SkillsList ref={listRef} data={visibleSkillItems} />
+    </div>
   );
 };
 

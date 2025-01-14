@@ -280,15 +280,16 @@ export const HomePage = () => {
               />
             </div>
 
-            <a
-              data-gsap-target="secondary"
-              target="_blank"
-              href={resume.resumeUrl}
-              className="gsap-item text-sm transition-colors items-center inline-flex gap-1.5 font-mono hover:underline text-text-primary"
-            >
-              View Resume to Learn More
-              <ExternalLink className="size-4" />
-            </a>
+            <div className="gsap-item" data-gsap-target="secondary">
+              <a
+                target="_blank"
+                href={resume.resumeUrl}
+                className="btn btn-text-md btn-link-primary"
+              >
+                View Resume to Learn More
+                <ExternalLink className="btn-s-icon" />
+              </a>
+            </div>
           </div>
         </header>
 
@@ -303,7 +304,7 @@ export const HomePage = () => {
           <div className="pb-24 max-w-[600px] lg:mr-auto lg:pb-16 px-5 md:px-10">
             <HomePageSections sectionClassName="pt-20 lg:pt-36" />
 
-            <footer className="mt-20 flex items-center lg:items-end flex-col gap-12">
+            <footer className="mt-20 relative z-[1] flex items-center lg:items-end flex-col gap-12">
               <div className="lg:hidden flex flex-col gap-4 items-center">
                 <ContactsNav aria-label="Contacts" items={contacts} />
                 <CopyButton value={resume.email} />
@@ -311,11 +312,11 @@ export const HomePage = () => {
 
               <a
                 target="_blank"
-                className="inline-flex font-mono text-sm gap-1.5 text-text-tertiary transition-colors hover:text-text-primary hover:underline"
+                className="btn btn-text-md btn-link-secondary"
                 href="https://github.com/alexaganov/portfolio-website"
               >
                 View Source Code
-                <Github className="size-4" />
+                <Github className="btn-s-icon" />
               </a>
             </footer>
           </div>
@@ -326,7 +327,7 @@ export const HomePage = () => {
         </div>
       </main>
 
-      <div className="fixed bottom-0 w-full h-24 flex items-center lg:hidden">
+      <div className="fixed z-10 bottom-0 w-full h-24 flex items-center lg:hidden">
         <div className="absolute w-full h-full left-0 z-0 top-0 bg-gradient-to-b from-transparent to-bg-primary" />
         <MainNavMobile
           data-gsap-target="secondary"

@@ -17,7 +17,6 @@ const ExperienceSectionContent = () => {
     <ul className="flex flex-col gap-10">
       {resume.experience.map((experience) => {
         const Icon = getCompanyLogoById(experience.id) || NoImage;
-        const isNoImage = Icon === NoImage;
         const formattedStartedAt = formatDate(experience.startedAt, "MMM yyyy");
         const formattedEndedAt = experience.endedAt
           ? formatDate(experience.endedAt, "MMM yyyy")
@@ -26,19 +25,15 @@ const ExperienceSectionContent = () => {
         const ariaLabel = `Open ${experience.companyName}'s website`;
 
         return (
-          <li key={experience.id} className="flex gap-4">
+          <li key={experience.id} className="flex items-start gap-4">
             <SafeExternalLink
               href={experience.websiteUrl}
               aria-label={experience.websiteUrl ? ariaLabel : undefined}
               className={clsx(
-                "flex items-center sticky top-5 size-9 justify-center hover:border-border-secondary transition-colors rounded-lg border border-border-primary flex-shrink-0",
-                {
-                  "text-text-tertiary": isNoImage,
-                  "text-text-secondary": !isNoImage,
-                }
+                "btn btn-icon-md btn-outline-primary sticky top-5 flex-shrink-0"
               )}
             >
-              <Icon className="size-5" />
+              <Icon className="btn-s-icon" />
             </SafeExternalLink>
 
             <div className="flex flex-col gap-4 pt-1">
@@ -80,13 +75,13 @@ const ExperienceSectionContent = () => {
 
               <ul
                 aria-label="Technologies used"
-                className="flex flex-wrap gap-2"
+                className="flex flex-wrap gap-1.5"
               >
                 {experience.technologyIds.map((skillId) => {
                   return (
                     <li
                       key={skillId}
-                      className="rounded-full hover:text-text-primary hover:border-border-secondary transition-colors inline-flex font-mono gap-1.5 select-none items-center border border-border-primary text-text-tertiary px-2.5 py-1 min-h-7 text-xs"
+                      className="tag tag-md tag-solid-muted tag-pill"
                     >
                       {skillById[skillId]?.name || skillId}
                     </li>

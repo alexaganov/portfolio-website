@@ -15,18 +15,13 @@ const ContactsNav = ({ items, ...props }: ContactsNavProps) => {
       <ul className="flex flex-wrap gap-3">
         {items.map(({ id, name, Icon, url }) => {
           return (
-            <li className="flex items-center gap-1" key={id}>
+            <li className="flex items-center" key={id}>
               <a
                 target="_blank"
                 href={url}
-                className="gap-2.5 inline-flex items-center text-sm text-text-tertiary hover:text-text-primary hover:underline font-mono transition-colors"
+                className="btn btn-icon-md btn-outline-primary"
               >
-                <span
-                  aria-label={name}
-                  className="rounded-xl inline-flex border border-border-secondary size-9 items-center justify-center flex-shrink-0"
-                >
-                  <Icon className="size-4 " />
-                </span>
+                <Icon aria-label={name} className="btn-s-icon" />
               </a>
             </li>
           );

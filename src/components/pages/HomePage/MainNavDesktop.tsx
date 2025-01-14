@@ -52,13 +52,9 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
                   document.getElementById(id)?.scrollIntoView();
                 }}
                 href={`#${id}`}
-                className={clsx(
-                  "flex font-mono gap-7 uppercase transition-colors hover:text-text-primary",
-                  {
-                    "text-text-primary": isActive,
-                    "text-text-tertiary": !isActive,
-                  }
-                )}
+                className={clsx("btn btn-text-primary gap-7 uppercase", {
+                  "btn-text-primary-active": isActive,
+                })}
               >
                 <span aria-hidden="true">{`${i + 1}`.padStart(3, "0")}</span>
                 <span>{name}</span>

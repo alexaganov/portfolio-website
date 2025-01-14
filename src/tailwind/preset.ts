@@ -1,6 +1,9 @@
 import plugin from "tailwindcss/plugin";
 import { OptionalConfig } from "tailwindcss/types/config";
 
+import button from "./plugins/button";
+import tag from "./plugins/tag";
+
 const colors = {
   "bg-primary": "#000",
   "bg-secondary": "#0F0F0F",
@@ -37,7 +40,31 @@ const config: Partial<OptionalConfig> = {
     },
   },
   plugins: [
+    button,
+    tag,
     plugin(({ addBase, addComponents }) => {
+      addBase({
+        ":root": {
+          "--bg-primary": colors["bg-primary"],
+          "--fg-primary": colors["text-primary"],
+
+          "--border-primary": colors["border-primary"],
+          "--border-secondary": colors["border-secondary"],
+
+          "--muted-bg-primary": "#191919",
+          "--muted-fg-primary": "#666666",
+
+          "--pressable-2xs-size": "1.25rem",
+          "--pressable-2xs-px": "",
+
+          "--pressable-sm-size": "1.75rem",
+          "--pressable-sm-px": "",
+
+          "--pressable-md-size": "2.25rem",
+          "--pressable-md-px": "",
+        },
+      });
+
       addBase({
         "::selection": {
           "mix-blend-mode": "darken",
@@ -48,6 +75,14 @@ const config: Partial<OptionalConfig> = {
 
         "*:focus-visible": {
           outlineOffset: "4px",
+        },
+      });
+
+      addComponents({
+        ".btn": {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         },
       });
 

@@ -220,13 +220,13 @@ export const resume: ResumeData = {
       id: "typescript",
       name: "TypeScript",
       description: "Programming Language",
-      tags: ["frontend", "programming-language"],
+      tags: ["frontend", "language"],
     },
     {
       id: "javascript",
       name: "JavaScript ES6+",
       description: "Programming Language",
-      tags: ["frontend", "programming-language"],
+      tags: ["frontend", "language"],
     },
     {
       id: "react",
@@ -336,7 +336,7 @@ export const resume: ResumeData = {
       id: "nodejs",
       name: "NodeJS",
       description: "Programming Language",
-      tags: ["backend"],
+      tags: ["backend", "language"],
     },
     {
       id: "shadcnui",
@@ -511,7 +511,7 @@ export const resume: ResumeData = {
       id: "php",
       name: "PHP",
       description: "Programming Language",
-      tags: ["backend", "programming-language"],
+      tags: ["backend", "language"],
     },
     {
       id: "wordpress",
@@ -536,6 +536,12 @@ export const resume: ResumeData = {
       name: "SQL",
       description: "Relational Database",
       tags: ["backend"],
+    },
+    {
+      id: "c",
+      name: "C/C++/C#",
+      description: "Relational Database",
+      tags: ["backend", "language"],
     },
   ],
 };
