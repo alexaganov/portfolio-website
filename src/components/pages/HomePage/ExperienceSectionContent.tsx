@@ -30,7 +30,7 @@ const ExperienceSectionContent = () => {
               href={experience.websiteUrl}
               aria-label={experience.websiteUrl ? ariaLabel : undefined}
               className={clsx(
-                "btn btn-icon-md btn-outline-primary sticky top-5 flex-shrink-0"
+                "btn btn-icon-md btn-outline-muted sticky top-5 flex-shrink-0"
               )}
             >
               <Icon className="btn-s-icon" />

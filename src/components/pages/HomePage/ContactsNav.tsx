@@ -19,7 +19,7 @@ const ContactsNav = ({ items, ...props }: ContactsNavProps) => {
               <a
                 target="_blank"
                 href={url}
-                className="btn btn-icon-md btn-outline-primary"
+                className="btn btn-icon-md btn-outline-muted"
               >
                 <Icon aria-label={name} className="btn-s-icon" />
               </a>

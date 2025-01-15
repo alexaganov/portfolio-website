@@ -31,7 +31,7 @@ export default plugin(({ addComponents }) => {
         height: "var(--tag-s-icon-size)",
       },
 
-      "&-solid-muted, &-outline-muted-default": {
+      "&-solid-muted": {
         backgroundColor: "var(--muted-bg-primary)",
         color: "var(--muted-fg-primary)",
       },

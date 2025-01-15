@@ -1,5 +1,4 @@
 import plugin from "tailwindcss/plugin";
-import { CSSRuleObject } from "tailwindcss/types/config";
 
 export default plugin(({ addComponents }) => {
   addComponents({
@@ -13,6 +12,7 @@ export default plugin(({ addComponents }) => {
       transitionProperties: "color, background-color, border-color",
       transitionDuration: "0.15s",
       transitionTimingFunction: "ease-in-out",
+      border: "1px solid transparent",
     },
 
     ".btn-pill": {
@@ -52,12 +52,17 @@ export default plugin(({ addComponents }) => {
         height: "var(--btn-s-icon-size)",
       },
 
-      "&-outline-primary, &-outline-primary-default": {
-        border: "1px solid var(--border-primary)",
+      "&-solid-primary": {
+        backgroundColor: "var(--mg-primary)",
+        color: "var(--fg-primary)",
+      },
+
+      "&-outline-muted, &-outline-muted-default": {
+        borderColor: "var(--border-primary)",
         color: "var(--muted-fg-primary)",
       },
 
-      "&-outline-primary": {
+      "&-outline-muted": {
         "&-selected": {
           backgroundColor: "var(--border-primary)",
           color: "var(--fg-primary)",

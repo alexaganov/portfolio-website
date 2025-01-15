@@ -46,6 +46,7 @@ const config: Partial<OptionalConfig> = {
       addBase({
         ":root": {
           "--bg-primary": colors["bg-primary"],
+          "--mg-primary": "#252525",
           "--fg-primary": colors["text-primary"],
 
           "--border-primary": colors["border-primary"],

@@ -99,7 +99,7 @@ const SkillsSectionContent = () => {
   const [activeSkillTagFilterIds, setActiveSkillTagFilterIds] = useState<
     string[]
   >([]);
-  const [isSafeSortAvailable, setIsSafeSortAvailable] = useState(false);
+  const [isVisuallySortAvailable, setIsVisuallySortAvailable] = useState(false);
 
   const skillsTagFilters = useMemo(
     () => getSkillsTagFilters(resume.technologies),
@@ -122,7 +122,7 @@ const SkillsSectionContent = () => {
   const visibleSkillItemsRef = useRef<SkillListItem[]>(sortedSkillItems);
 
   // work around to show updated items only when list is not visible for user
-  if (isSafeSortAvailable) {
+  if (isVisuallySortAvailable) {
     visibleSkillItemsRef.current = sortedSkillItems;
   }
 
@@ -131,10 +131,17 @@ const SkillsSectionContent = () => {
   const { contextSafe } = useGSAP({ scope: containerRef });
 
   const getSkillTagFilterClickHandler = (skillTagFilterId: string) => {
+    if (
+      skillTagFilterId === SKILLS_TAG_FILTER_ALL_ID &&
+      !activeSkillTagFilterIds.length
+    ) {
+      return () => {};
+    }
+
     return contextSafe(() => {
       const tl = gsap.timeline();
 
-      setIsSafeSortAvailable(false);
+      setIsVisuallySortAvailable(false);
 
       setActiveSkillTagFilterIds((oldFilter) => {
         if (skillTagFilterId === SKILLS_TAG_FILTER_ALL_ID) {
@@ -156,7 +163,7 @@ const SkillsSectionContent = () => {
       });
 
       tl.call(() => {
-        setIsSafeSortAvailable(true);
+        setIsVisuallySortAvailable(true);
       });
 
       tl.to(listRef.current, {
@@ -185,8 +192,9 @@ const SkillsSectionContent = () => {
             return (
               <li className="flex flex-shrink-0" key={skillsTagFilter.id}>
                 <button
-                  className={clsx("btn btn-pill btn-sm btn-outline-primary", {
-                    "btn-outline-primary-selected": isActive,
+                  className={clsx("btn btn-pill btn-sm", {
+                    "btn-solid-primary": isActive,
+                    "btn-outline-muted": !isActive,
                   })}
                   onClick={getSkillTagFilterClickHandler(skillsTagFilter.id)}
                 >
