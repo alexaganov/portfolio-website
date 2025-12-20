@@ -21,10 +21,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leetcode } from "@/components/icons/mono/Leetcode";
-import { ActivitySectionContent } from "./ActivitySectionContent";
 import { User } from "@/components/icons/mono/User";
 import { Briefcase } from "@/components/icons/mono/Briefcase";
-import { Clock } from "@/components/icons/mono/Clock";
 import { Star } from "@/components/icons/mono/Star";
 
 gsap.registerPlugin(useGSAP);
@@ -310,14 +308,14 @@ export const HomePage = () => {
           data-gsap-target="content"
           className="gsap-item bg-bg-secondary relative items-center flex flex-col rounded-t-xl lg:rounded-l-xl"
         >
-          <div className="max-lg:hidden sticky top-0 pointer-events-none w-full h-0">
-            <div className="h-[8.5rem] bg-gradient-to-t from-transparent to-bg-secondary" />
+          <div className="max-lg:hidden z-10 sticky top-0 pointer-events-none w-full h-0">
+            <div className="h-34 bg-liner-to-t from-transparent to-bg-secondary" />
           </div>
 
           <div className="pb-24 max-w-[600px] lg:mr-auto lg:pb-16 px-5 md:px-10">
             <HomePageSections sectionClassName="pt-20 lg:pt-36" />
 
-            <footer className="mt-20 relative z-[1] flex items-center lg:items-end flex-col gap-12">
+            <footer className="mt-20 relative z-1 flex items-center lg:items-end flex-col gap-12">
               <div className="lg:hidden flex flex-col gap-4 items-center">
                 <ContactsNav aria-label="Contacts" items={contacts} />
                 <CopyButton value={resume.email} />
@@ -334,14 +332,14 @@ export const HomePage = () => {
             </footer>
           </div>
 
-          <div className="max-lg:hidden sticky bottom-0 pointer-events-none w-full h-0">
-            <div className="h-16 -translate-y-full bg-gradient-to-b from-transparent to-bg-secondary" />
+          <div className="max-lg:hidden z-10 sticky bottom-0 pointer-events-none w-full h-0">
+            <div className="h-16 -translate-y-full bg-linear-to-b from-transparent to-bg-secondary" />
           </div>
         </div>
       </main>
 
       <div className="fixed z-10 bottom-0 w-full h-24 flex items-center lg:hidden">
-        <div className="absolute w-full h-full left-0 z-0 top-0 bg-gradient-to-b from-transparent to-bg-primary" />
+        <div className="absolute w-full h-full left-0 z-0 top-0 bg-linear-to-b from-transparent to-bg-primary" />
         <MainNavMobile
           data-gsap-target="secondary"
           className="relative gsap-item w-full max-w-[600px] px-5 md:px-10 mx-auto"

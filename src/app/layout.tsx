@@ -13,7 +13,7 @@ const alexandriaSans = Alexandria({
 
 const kodeMono = Kode_Mono({
   subsets: ["latin"],
-  variable: "--font-mono-primary",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -140,12 +140,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={clsx(
-          "antialiased",
-          "bg-bg-primary",
-          "text-text-primary",
           alexandriaSans.className,
           alexandriaSans.variable,
-          kodeMono.variable
+          kodeMono.variable,
         )}
       >
         {children}

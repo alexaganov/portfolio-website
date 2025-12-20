@@ -1,3 +1,277 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-primary: var(--ui-bg-primary);
+  --color-bg-secondary: var(--ui-bg-secondary);
+  --color-bg-tertiary: var(--ui-bg-tertiary);
+  --color-bg-quaternary: var(--ui-bg-quaternary);
+  --color-text-primary: var(--ui-text-primary);
+  --color-text-secondary: var(--ui-text-secondary);
+  --color-text-tertiary: var(--ui-text-tertiary);
+  --color-text-quaternary: var(--ui-text-quaternary);
+  --color-border-primary: var(--ui-border-primary);
+  --color-border-secondary: var(--ui-border-secondary);
+  --color-success: var(--ui-success);
+  --color-info: var(--ui-info);
+  --color-warning: var(--ui-warning);
+  --color-danger: var(--ui-danger);
+}
+
+@layer base {
+  :root {
+    --ui-bg-primary: #000;
+    --ui-bg-secondary: #0f0f0f;
+    --ui-bg-tertiary: #292929;
+    --ui-bg-quaternary: #373737;
+    --ui-mg-primary: #252525;
+    --ui-mg-secondary: #2f2f2f;
+    --ui-fg-primary: #fff;
+    --ui-text-primary: #fff;
+    --ui-text-secondary: #adadad;
+    --ui-text-tertiary: #858585;
+    --ui-text-quaternary: #4a4a4a;
+    --ui-border-primary: #252525;
+    --ui-border-secondary: #434343;
+    --ui-muted-bg-primary: #191919;
+    --ui-muted-fg-primary: #666666;
+    --ui-pressable-2xs-size: 1.25rem;
+    --ui-pressable-2xs-px: "";
+    --ui-pressable-sm-size: 1.75rem;
+    --ui-pressable-sm-px: "";
+    --ui-pressable-md-size: 2.25rem;
+    --ui-pressable-md-px: "";
+    --ui-pressable-lg-size: 2.5rem;
+    --ui-pressable-lg-px: 0.875rem;
+    --ui-pressable-xl-size: 3rem;
+    --ui-pressable-xl-px: "";
+    --ui-btn-lg-px: var(--ui-pressable-lg-size);
+    --ui-success: #80ff7e;
+    --ui-info: #68c8ff;
+    --ui-warning: #decc22;
+    --ui-danger: #ff3838;
+  }
+
+  ::selection {
+    mix-blend-mode: darken;
+    background-clip: text;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  *:focus-visible {
+    outline-offset: 4px;
+  }
+
+  html {
+    color: var(--ui-text-primary);
+    background-color: var(--ui-bg-primary);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: inherit;
+    color: inherit;
+    font-family:
+      var(--font-geist-sans),
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
+
+  * {
+    border-color: var(--ui-border-primary);
+  }
+}
+
+@layer components {
+  .btn,
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    border: 1px solid transparent;
+  }
+
+  .btn-pill {
+    border-radius: 9999px;
+  }
+
+  .btn-sm {
+    min-width: var(--ui-pressable-sm-size);
+    min-height: var(--ui-pressable-sm-size);
+    font-size: 0.75rem;
+    padding: 0 0.625rem;
+  }
+
+  .btn-md,
+  .btn-icon-md {
+    border-radius: 0.5rem;
+    min-width: var(--ui-pressable-md-size);
+    min-height: var(--ui-pressable-md-size);
+  }
+
+  .btn-md {
+    padding: 0 0.75rem;
+  }
+
+  .btn-md,
+  .btn-text-md,
+  .btn-icon-md {
+    --ui-btn-s-icon-size: 1rem;
+  }
+
+  .btn-md,
+  .btn-text-md {
+    font-size: 0.875rem;
+    line-height: 1.25;
+    gap: 0.5rem;
+  }
+
+  .btn-lg {
+    min-height: var(--ui-pressable-lg-size);
+    min-width: var(--ui-pressable-lg-size);
+    font-size: 0.875rem;
+    padding: 0 0.875rem;
+    border-radius: 0.625rem;
+  }
+
+  .btn-xl {
+    min-height: var(--ui-pressable-xl-size);
+    min-width: var(--ui-pressable-xl-size);
+    padding: 0 1.125rem;
+    border-radius: 0.625rem;
+  }
+
+  .btn-s-icon {
+    width: var(--ui-btn-s-icon-size);
+    height: var(--ui-btn-s-icon-size);
+  }
+
+  .btn-solid-primary {
+    background-color: var(--ui-mg-primary);
+    color: var(--ui-fg-primary);
+  }
+
+  .btn-solid-primary:hover {
+    background-color: var(--ui-mg-secondary);
+  }
+
+  .btn-outline-muted,
+  .btn-outline-muted-default {
+    border-color: var(--ui-border-primary);
+    color: var(--ui-muted-fg-primary);
+  }
+
+  .btn-outline-muted-selected {
+    background-color: var(--ui-border-primary);
+    color: var(--ui-fg-primary);
+  }
+
+  .btn-outline-muted:hover,
+  .btn-outline-muted-active {
+    border-color: var(--ui-border-secondary);
+    color: var(--ui-fg-primary);
+  }
+
+  .btn-text-primary {
+    color: var(--ui-muted-fg-primary);
+  }
+
+  .btn-text-primary-active,
+  .btn-text-primary:hover {
+    color: var(--ui-fg-primary);
+  }
+
+  .btn-link-primary {
+    color: var(--ui-fg-primary);
+  }
+
+  .btn-link-primary:hover {
+    text-decoration: underline;
+  }
+
+  .btn-link-secondary {
+    color: var(--ui-muted-fg-primary);
+  }
+
+  .btn-link-secondary:hover {
+    text-decoration: underline;
+    color: var(--ui-fg-primary);
+  }
+
+  .tag,
+  .tag-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: var(--font-mono);
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .tag-pill {
+    border-radius: 9999px;
+  }
+
+  .tag-md {
+    min-width: var(--ui-pressable-2xs-size);
+    min-height: var(--ui-pressable-2xs-size);
+    font-size: 0.75rem;
+    padding: 0 0.625rem;
+    --ui-btn-s-icon-size: 1rem;
+  }
+
+  .tag-s-icon {
+    width: var(--ui-tag-s-icon-size);
+    height: var(--ui-tag-s-icon-size);
+  }
+
+  .tag-solid-muted {
+    background-color: var(--ui-muted-bg-primary);
+    color: var(--ui-muted-fg-primary);
+  }
+
+  .mask-image-fade-b {
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .gsap-hide-items .gsap-item {
+    opacity: 0;
+  }
+
+  .prose {
+    line-height: 1.75;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ui-text-secondary);
+  }
+
+  .prose ul {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .prose ul li + li {
+    margin-top: 0.25rem;
+  }
+
+  .prose ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ui-text-quaternary);
+  }
+}

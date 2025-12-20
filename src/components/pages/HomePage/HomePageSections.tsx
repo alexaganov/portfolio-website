@@ -17,7 +17,7 @@ const HomePageSections = ({
 
   useEffect(() => {
     const sectionElements = Array.from(
-      contentElRef.current?.querySelectorAll("section") || []
+      contentElRef.current?.querySelectorAll("section") || [],
     );
 
     const handleIntersectionObserver: IntersectionObserverCallback = () => {
@@ -30,7 +30,7 @@ const HomePageSections = ({
         const viewportHeight = window.innerHeight;
         const visibleHeight = Math.max(
           0,
-          Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)
+          Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0),
         );
         const visibleHeightPercentage = visibleHeight / viewportHeight;
 
@@ -67,7 +67,7 @@ const HomePageSections = ({
                 <span
                   role="presentation"
                   aria-hidden="true"
-                  className="font-mono block mask-image-fade-b text-text-tertiary/5 font-thin tracking-tighter leading-none text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6"
+                  className="font-mono block mask-linear-from-20% mask-linear-to-90% mask-linear-180 mask-linear-from-black mask-linear-to-black/0 mask-linear-to-b text-text-tertiary/5 font-thin tracking-tighter leading-none text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6"
                 >
                   {`${i + 1}`.padStart(3, "0")}
                 </span>
