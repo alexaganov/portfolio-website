@@ -21,12 +21,20 @@ const colors = {
   info: {
     DEFAULT: "#68C8FF",
   },
+  warning: {
+    DEFAULT: "#DECC22",
+  },
+  danger: {
+    DEFAULT: "#FF3838",
+  },
 };
 
 const config: Partial<OptionalConfig> = {
   theme: {
     extend: {
-      colors,
+      colors: {
+        ...colors,
+      },
     },
     fontFamily: {
       // variables defined in layout file
@@ -47,6 +55,7 @@ const config: Partial<OptionalConfig> = {
         ":root": {
           "--bg-primary": colors["bg-primary"],
           "--mg-primary": "#252525",
+          "--mg-secondary": "#2f2f2f",
           "--fg-primary": colors["text-primary"],
 
           "--border-primary": colors["border-primary"],
@@ -63,6 +72,12 @@ const config: Partial<OptionalConfig> = {
 
           "--pressable-md-size": "2.25rem",
           "--pressable-md-px": "",
+
+          "--pressable-lg-size": "2.5rem",
+          "--pressable-lg-px": "0.875rem",
+
+          "--pressable-xl-size": "3rem",
+          "--pressable-xl-px": "",
         },
       });
 

@@ -5,6 +5,7 @@ export interface SectionNavSection {
   id: string;
   name: string;
   shortName?: string;
+  Icon: ComponentType<{ className?: string }>;
   Content?: ComponentType;
 }
 

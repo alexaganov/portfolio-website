@@ -21,6 +21,11 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leetcode } from "@/components/icons/mono/Leetcode";
+import { ActivitySectionContent } from "./ActivitySectionContent";
+import { User } from "@/components/icons/mono/User";
+import { Briefcase } from "@/components/icons/mono/Briefcase";
+import { Clock } from "@/components/icons/mono/Clock";
+import { Star } from "@/components/icons/mono/Star";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -63,17 +68,25 @@ const sections: SectionNavSection[] = [
     id: "about",
     name: "About",
     Content: AboutSectionContent,
+    Icon: User,
   },
   {
     id: "experience",
     name: "Experience",
-    shortName: "Exp",
     Content: ExperienceSectionContent,
+    Icon: Briefcase,
   },
+  // {
+  //   id: "activity",
+  //   name: "Activity",
+  //   Content: ActivitySectionContent,
+  //   Icon: Clock,
+  // },
   {
     id: "skills",
     name: "Skills",
     Content: SkillsSectionContent,
+    Icon: Star,
   },
 ];
 
@@ -108,7 +121,7 @@ export const HomePage = () => {
         yPercent: 0,
         duration: 1.3,
         stagger: 0.3,
-      }
+      },
     );
 
     const secondaryItemsTimeline = gsap.timeline({
@@ -126,7 +139,7 @@ export const HomePage = () => {
         opacity: 1,
         duration: 0.7,
         stagger: 0.2,
-      }
+      },
     );
 
     rootTimeline
@@ -142,7 +155,7 @@ export const HomePage = () => {
           duration: secondaryItemsTimeline.duration(),
           ease: "power4.out",
         },
-        "-=1.4"
+        "-=1.4",
       );
 
     const isDesktop = matchMedia("(min-width: 1024px)").matches;
@@ -160,7 +173,7 @@ export const HomePage = () => {
           duration: 0.8,
           ease: "power4.out",
         },
-        "<"
+        "<",
       );
     }
 
@@ -185,12 +198,12 @@ export const HomePage = () => {
         <header
           id="header"
           className={clsx(
-            "min-h-screen lg:h-screen items-center flex lg:sticky flex-col lg:top-0"
+            "min-h-screen lg:h-screen items-center flex lg:sticky flex-col lg:top-0",
           )}
         >
           <div
             className={clsx(
-              "relative flex flex-1 pb-24 pt-20 px-5 items-start justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-36 lg:justify-between lg:ml-auto"
+              "relative flex flex-1 pb-24 pt-20 px-5 items-start justify-center md:px-10 flex-col gap-12 max-w-[600px] sm:gap-8 lg:pb-16 lg:pt-36 lg:justify-between lg:ml-auto",
             )}
           >
             <div className="relative flex flex-col items-start">

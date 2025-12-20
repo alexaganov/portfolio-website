@@ -44,11 +44,11 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
           </div>
 
           <ul className="flex h-full relative">
-            {sections.map(({ id, name, shortName }) => {
+            {sections.map(({ id, name, Icon }) => {
               const isActive = activeId === id;
 
               return (
-                <li key={id} className="flex flex-1">
+                <li key={id} className={clsx("flex flex-1")}>
                   <a
                     onClick={(event) => {
                       event.preventDefault();
@@ -64,19 +64,16 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                       }
                     )}
                   >
-                    {shortName && (
+                    <span className="sm:hidden flex items-center justify-center">
+                      <Icon className="size-5" />
+                    </span>
+                    {/* {shortName && (
                       <span aria-label={name} className="sm:hidden">
                         {shortName}
                       </span>
-                    )}
+                    )} */}
 
-                    <span
-                      className={clsx({
-                        "max-sm:hidden": shortName,
-                      })}
-                    >
-                      {name}
-                    </span>
+                    <span className="max-sm:hidden">{name}</span>
                   </a>
                 </li>
               );

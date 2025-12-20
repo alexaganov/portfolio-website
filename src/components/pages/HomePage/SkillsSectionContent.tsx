@@ -160,6 +160,8 @@ const SkillsSectionContent = () => {
       tl.to(listRef.current, {
         opacity: 0,
         y: "1rem",
+        duration: 0.3,
+        ease: "power1.in",
       });
 
       tl.call(() => {
@@ -169,6 +171,8 @@ const SkillsSectionContent = () => {
       tl.to(listRef.current, {
         opacity: 1,
         y: "0",
+        duration: 0.3,
+        ease: "power1.out",
       });
     });
   };

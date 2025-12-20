@@ -1,6 +1,12 @@
 import plugin from "tailwindcss/plugin";
 
-export default plugin(({ addComponents }) => {
+export default plugin(({ addBase, addComponents }) => {
+  addBase({
+    ":root": {
+      "--btn-lg-px": "var(--pressable-lg-size)",
+    },
+  });
+
   addComponents({
     ".btn, .btn-base": {
       display: "inline-flex",
@@ -47,6 +53,21 @@ export default plugin(({ addComponents }) => {
         gap: "0.5rem",
       },
 
+      "&-lg": {
+        minHeight: "var(--pressable-lg-size)",
+        minWidth: "var(--pressable-lg-size)",
+        fontSize: "0.875rem",
+        padding: "0 0.875rem",
+        borderRadius: "0.625rem",
+      },
+
+      "&-xl": {
+        minHeight: "var(--pressable-xl-size)",
+        minWidth: "var(--pressable-xl-size)",
+        padding: "0 1.125rem",
+        borderRadius: "0.625rem",
+      },
+
       "&-s-icon": {
         width: "var(--btn-s-icon-size)",
         height: "var(--btn-s-icon-size)",
@@ -55,6 +76,10 @@ export default plugin(({ addComponents }) => {
       "&-solid-primary": {
         backgroundColor: "var(--mg-primary)",
         color: "var(--fg-primary)",
+
+        "&:hover": {
+          backgroundColor: "var(--mg-secondary)",
+        },
       },
 
       "&-outline-muted, &-outline-muted-default": {
