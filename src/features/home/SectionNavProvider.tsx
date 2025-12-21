@@ -1,11 +1,18 @@
-import { createSafeContext, useSafeContext } from "@/utils/context";
-import React, { ComponentType, ReactNode, useMemo, useState } from "react";
+import React, {
+  type ComponentProps,
+  type ComponentType,
+  type ReactNode,
+  useMemo,
+  useState,
+} from 'react';
+
+import { createSafeContext, useSafeContext } from '@/utils/context';
 
 export interface SectionNavSection {
   id: string;
   name: string;
   shortName?: string;
-  Icon: ComponentType<{ className?: string }>;
+  Icon: ComponentType<ComponentProps<'svg'>>;
   Content?: ComponentType;
 }
 
@@ -19,14 +26,11 @@ const Context = createSafeContext<ContextValue>();
 
 export const useSectionNav = () => useSafeContext(Context);
 
-interface SectionNavProviderProps extends Pick<ContextValue, "sections"> {
+interface SectionNavProviderProps extends Pick<ContextValue, 'sections'> {
   children?: ReactNode;
 }
 
-const SectionNavProvider = ({
-  sections,
-  children,
-}: SectionNavProviderProps) => {
+const SectionNavProvider = ({ sections, children }: SectionNavProviderProps) => {
   const [activeId, setActiveId] = useState<string | undefined>();
 
   const value = useMemo(() => {

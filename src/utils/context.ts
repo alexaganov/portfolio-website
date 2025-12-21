@@ -12,12 +12,11 @@ export const createSafeContext = <ContextValue>(): Context<
 
 export const useSafeContext = <ContextType>(
   context: Context<ContextType | DefaultValue>,
-  contextName = ""
 ): ContextType => {
   const value = use(context);
 
   if (value === defaultValue) {
-    throw new Error(`No value provided for context ${contextName}`);
+    throw new Error(`No value provided for context ${context.displayName}`);
   }
 
   return value as ContextType;

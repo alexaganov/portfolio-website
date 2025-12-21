@@ -1,4 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    var(--font-next-sans-primary), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    var(--font-next-mono-primary), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  /* --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; */
+}
 
 @theme inline {
   --color-bg-primary: var(--ui-bg-primary);
@@ -20,35 +30,48 @@
 @layer base {
   :root {
     --ui-bg-primary: #000;
-    --ui-bg-secondary: #0f0f0f;
+    --ui-bg-secondary: hsl(0, 0%, 3%);
     --ui-bg-tertiary: #292929;
     --ui-bg-quaternary: #373737;
+
     --ui-mg-primary: #252525;
     --ui-mg-secondary: #2f2f2f;
-    --ui-fg-primary: #fff;
-    --ui-text-primary: #fff;
+
+    --ui-fg-primary: #dbdbdb;
+
+    --ui-text-primary: #dbdbdb;
     --ui-text-secondary: #adadad;
     --ui-text-tertiary: #858585;
     --ui-text-quaternary: #4a4a4a;
+
     --ui-border-primary: #252525;
     --ui-border-secondary: #434343;
+
     --ui-muted-bg-primary: #191919;
     --ui-muted-fg-primary: #666666;
+
     --ui-pressable-2xs-size: 1.25rem;
-    --ui-pressable-2xs-px: "";
+    --ui-pressable-2xs-px: '';
     --ui-pressable-sm-size: 1.75rem;
-    --ui-pressable-sm-px: "";
+    --ui-pressable-sm-px: '';
     --ui-pressable-md-size: 2.25rem;
-    --ui-pressable-md-px: "";
+    --ui-pressable-md-px: '';
     --ui-pressable-lg-size: 2.5rem;
     --ui-pressable-lg-px: 0.875rem;
     --ui-pressable-xl-size: 3rem;
-    --ui-pressable-xl-px: "";
+    --ui-pressable-xl-px: '';
     --ui-btn-lg-px: var(--ui-pressable-lg-size);
     --ui-success: #80ff7e;
     --ui-info: #68c8ff;
     --ui-warning: #decc22;
     --ui-danger: #ff3838;
+
+    /* --ui-brand-salmon: #f7941d; */
+
+    /* --ui-brand-telegram: #0088cc;
+    --ui-brand-linkedin: #0077b5;
+    --ui-brand-github: #4078c0;
+    --ui-brand-leetcode: #ffa116; */
   }
 
   ::selection {
@@ -65,24 +88,43 @@
   html {
     color: var(--ui-text-primary);
     background-color: var(--ui-bg-primary);
-    -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: inherit;
     color: inherit;
-    font-family:
+    /* font-family:
       var(--font-geist-sans),
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
-      sans-serif;
+      sans-serif; */
   }
 
-  * {
-    border-color: var(--ui-border-primary);
-  }
+  /* body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.2' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.1;
+  } */
 }
+
+/* @utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
+  border: 1px solid transparent;
+} */
 
 @layer components {
   .btn,
@@ -241,11 +283,7 @@
   }
 
   .mask-image-fade-b {
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 30%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
   }
 
   .gsap-hide-items .gsap-item {
@@ -269,7 +307,7 @@
   }
 
   .prose ul li::before {
-    content: "▸";
+    content: '✦';
     position: absolute;
     left: 0;
     color: var(--ui-text-quaternary);
