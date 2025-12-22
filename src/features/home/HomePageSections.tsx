@@ -75,7 +75,7 @@ const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps)
                   role="presentation"
                   aria-hidden="true"
                   className={cn(
-                    'font-mono block text-shadow-[1px_1px,-1px_-1px,1px_-1px,-1px_1px] text-shadow-text-tertiary opacity-20 text-bg-secondary font-black tracking-tighter leading-none text-[120px] -translate-y-2 lg:-translate-y-2.5 -translate-x-5 lg:-translate-x-6',
+                    'font-mono block text-shadow-[1px_1px,-1px_-1px,1px_-1px,-1px_1px] text-shadow-text-tertiary opacity-20 text-bg-secondary font-black tracking-tighter leading-none text-[120px] -translate-y-2 lg:-translate-y-2.5 -translate-x-14 lg:-translate-x-6',
                     ' mask-linear-from-0% mask-linear-to-80% mask-linear-180 mask-linear-from-black mask-linear-to-black/0 mask-linear-to-b',
                   )}
                 >

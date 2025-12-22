@@ -9,8 +9,8 @@ type MainNavDesktopProps = ComponentPropsWithRef<'nav'> & {};
 
 const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
   const { activeId, sections } = useSectionNav();
-  const activeSectionIndex = sections.findIndex((section) => section.id === activeId);
-  const translateY = activeSectionIndex === -1 ? 0 : (activeSectionIndex / sections.length) * 100;
+  // const activeSectionIndex = sections.findIndex((section) => section.id === activeId);
+  // const translateY = activeSectionIndex === -1 ? 0 : (activeSectionIndex / sections.length) * 100;
 
   return (
     <nav className={clsx('relative', className)} aria-label="Main navigation" {...props}>
@@ -46,7 +46,7 @@ const MainNavDesktop = ({ className, ...props }: MainNavDesktopProps) => {
                   document.getElementById(id)?.scrollIntoView();
                 }}
                 href={`#${id}`}
-                className={clsx('btn btn-text-primary gap-2 uppercase', {
+                className={clsx('btn btn-text-primary gap-2', {
                   'btn-text-primary-active': isActive,
                 })}
               >

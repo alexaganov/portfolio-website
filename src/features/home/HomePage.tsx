@@ -42,7 +42,7 @@ export const HomePage = () => {
   return (
     <SectionNavProvider sections={sections}>
       <main
-        className={clsx('relative lg:grid lg:grid-cols-2', {
+        className={clsx('relative overflow-clip lg:grid lg:grid-cols-2', {
           'gsap-hide-items': pageAnimation.isPlaying,
           'h-screen overflow-hidden': pageAnimation.isPlaying,
         })}
@@ -60,13 +60,15 @@ export const HomePage = () => {
           />
         </header>
 
-        {/* <div className="p-6 lg:pl-0">
-        </div> */}
-        <HomeSecondaryContent data-gsap-target="content" className="gsap-item max-lg:pb-24" />
+        <HomeSecondaryContent
+          data-gsap-target="content"
+          className="gsap-item overflow-hidden max-lg:pb-24"
+        />
       </main>
 
       <div className="fixed z-10 bottom-0 w-full h-24 flex items-center lg:hidden">
         <div className="absolute w-full h-full left-0 z-0 top-0 bg-linear-to-b from-transparent to-bg-primary" />
+
         <MainNavMobile
           data-gsap-target="secondary"
           className="relative gsap-item w-full max-w-150 px-5 md:px-10 mx-auto"

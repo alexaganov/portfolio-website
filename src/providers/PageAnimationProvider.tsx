@@ -1,6 +1,7 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+// import { GSDevTools } from 'gsap/GSDevTools';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { type ReactNode, useMemo, useState } from 'react';
 
@@ -8,6 +9,7 @@ import { createSafeContext, useSafeContext } from '@/utils/context';
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(GSDevTools);
 
 type ContextValue = {
   isPlaying: boolean;
@@ -74,6 +76,7 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
     const rootTimeline = gsap.timeline({
       delay: 0.2,
       paused: true,
+      smoothChildTiming: true,
     });
 
     rootTimeline
@@ -119,6 +122,8 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
     }, '-=1.25');
 
     rootTimeline.play();
+
+    // GSDevTools.create({ animation: rootTimeline });
   });
 
   const value: ContextValue = useMemo(() => {
