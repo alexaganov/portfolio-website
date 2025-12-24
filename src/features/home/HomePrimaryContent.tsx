@@ -1,12 +1,12 @@
-import clsx from 'clsx';
 import React, { type ComponentProps } from 'react';
 
 import CopyButton from '@/components/common/CopyButton';
 import { ExternalLink } from '@/components/common/ExternalLink';
 import { getCompanyLogoById, resume, type ResumeExperience } from '@/data';
+import { cn } from '@/utils/class-name';
 
 import { ContactsNav } from './ContactsNav';
-import MainNavDesktop from './MainNavDesktop';
+import { MainNavDesktop } from './MainNavDesktop';
 
 type HomePrimaryContentProps = ComponentProps<'div'>;
 
@@ -35,7 +35,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
   const presentExperience = resume.experience.find((experience) => !experience.endedAt);
 
   return (
-    <div className={clsx(className)} aria-label="Contacts" {...props}>
+    <div className={cn(className)} aria-label="Contacts" {...props}>
       <div className="relative flex flex-col items-start">
         {/* making it absolute to not depend on height of this element
               for calc top padding of the right content on large devices */}
@@ -58,7 +58,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
           </div>
         )}
 
-        <div className=" sm:mb-2">
+        <div className="sm:mb-1">
           <h1 className="overflow-hidden relative uppercase font-bold text-3xl sm:text-4xl tracking-wider">
             {[resume.firstName, resume.lastName].map((word, i, items) => {
               const isLast = i === items.length - 1;
@@ -77,7 +77,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
           </h1>
         </div>
 
-        <div className="mb-2.5 overflow-hidden sm:mb-3">
+        <div className="mb-2.5 overflow-hidden sm:mb-5">
           <p className="overflow-hidden relative text-2xl sm:text-2xl">
             {resume.position.split(' ').map((word, i, items) => {
               const isLast = i === items.length - 1;
@@ -96,15 +96,15 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
           </p>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-5">
           <p
             data-gsap-target="secondary"
-            className="leading-[1.75] text-text-secondary font-light text-balance"
+            className="leading-[1.6] text-text-secondary font-light text-balance"
             dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
           />
         </div>
 
-        <div className="flex items-start flex-col gap-y-4 gap-x-8">
+        <div className="flex items-start flex-col gap-y-2 gap-x-8">
           <ContactsNav data-gsap-target="secondary" />
 
           <CopyButton data-gsap-target="secondary" value={resume.email} />

@@ -5,13 +5,13 @@ import React, { type ComponentPropsWithRef, useEffect, useRef } from 'react';
 import { cn } from '@/utils/class-name';
 import { isFullyInView } from '@/utils/dom';
 
-import { useSectionNav } from './SectionNavProvider';
+import { useSectionNav } from './sections/SectionNavProvider';
 
 type HomePageSectionsProps = ComponentPropsWithRef<'div'> & {
   sectionClassName?: string;
 };
 
-const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps) => {
+export const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps) => {
   const { setActiveId, sections } = useSectionNav();
   const contentElRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps)
         );
         const visibleHeightPercentage = visibleHeight / viewportHeight;
 
-        // check if 50% of section is visible because
+        // check if 50% of section is visible
         return visibleHeightPercentage >= 0.5;
       });
 
@@ -56,21 +56,8 @@ const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps)
       {sections.map(({ name, id, Content }, i) => {
         return (
           <section id={id} key={id} className={clsx('flex flex-col', sectionClassName)}>
-            <header className="mb-3 flex gap-2 flex-col">
+            <header className="mb-5 flex gap-1 flex-col">
               <div className="h-10 select-none">
-                {/* <svg
-                  className={cn(
-                    'font-mono text-[80px] lg:text-[120px] translate-y-2 lg:-translate-y-2.5 -translate-x-3 lg:-translate-x-6 text-text-tertiary/20 font-black',
-                    'mask-linear-from-10% mask-linear-to-90% mask-linear-180 mask-linear-from-black mask-linear-to-black/0 mask-linear-to-b',
-                  )}
-                  role="presentation"
-                  aria-hidden="true"
-                  fill="none"
-                >
-                  <text x="0" y="90" stroke="currentcolor">
-                    {`${i + 1}`.padStart(3, '0')}
-                  </text>
-                </svg> */}
                 <span
                   role="presentation"
                   aria-hidden="true"
@@ -92,5 +79,3 @@ const HomePageSections = ({ sectionClassName, ...props }: HomePageSectionsProps)
     </div>
   );
 };
-
-export default HomePageSections;

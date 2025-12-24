@@ -8,6 +8,8 @@
     var(--font-next-mono-primary), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   /* --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; */
+
+  --spacing-content-height: 820px;
 }
 
 @theme inline {
@@ -15,16 +17,28 @@
   --color-bg-secondary: var(--ui-bg-secondary);
   --color-bg-tertiary: var(--ui-bg-tertiary);
   --color-bg-quaternary: var(--ui-bg-quaternary);
+
+  --color-mg-primary: var(--ui-mg-primary);
+  --color-mg-secondary: var(--ui-mg-secondary);
+  --color-mg-muted-primary: var(--ui-muted-fg-primary);
+
+  --color-fg-primary: var(--ui-fg-primary);
+
   --color-text-primary: var(--ui-text-primary);
   --color-text-secondary: var(--ui-text-secondary);
   --color-text-tertiary: var(--ui-text-tertiary);
   --color-text-quaternary: var(--ui-text-quaternary);
+
   --color-border-primary: var(--ui-border-primary);
   --color-border-secondary: var(--ui-border-secondary);
+
   --color-success: var(--ui-success);
   --color-info: var(--ui-info);
   --color-warning: var(--ui-warning);
   --color-danger: var(--ui-danger);
+
+  --spacing-pressable-md: var(--ui-pressable-md-size);
+  --spacing-pressable-xl: var(--ui-pressable-xl-size);
 }
 
 @layer base {
@@ -60,6 +74,7 @@
     --ui-pressable-lg-px: 0.875rem;
     --ui-pressable-xl-size: 3rem;
     --ui-pressable-xl-px: '';
+
     --ui-btn-lg-px: var(--ui-pressable-lg-size);
     --ui-success: #80ff7e;
     --ui-info: #68c8ff;
@@ -308,4 +323,35 @@
     left: 0;
     color: var(--ui-text-quaternary);
   }
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / old Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
+  }
+}
+
+@utility clip-path-skewed-hex-* {
+  clip-path: polygon(
+    --spacing(--value(number)) 0,
+    100% 0,
+    100% calc(100% - --spacing(--value(number))),
+    calc(100% - --spacing(--value(number))) 100%,
+    0 100%,
+    0 --spacing(--value(number))
+  );
+}
+
+@utility clip-path-skewed-hex-right-* {
+  clip-path: polygon(
+    0 0,
+    calc(100% - --spacing(--value(number))) 0,
+    100% --spacing(--value(number)),
+    100% 100%,
+    --spacing(--value(number)) 100%,
+    0 calc(100% - --spacing(--value(number)))
+  );
 }

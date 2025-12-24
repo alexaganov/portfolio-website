@@ -1,8 +1,6 @@
-import React from 'react';
-
-const AboutSectionContent = () => {
+export const AboutSectionContent = () => {
   return (
-    <div className="space-y-6 leading-[1.75] text-text-secondary font-light">
+    <div className="space-y-6 leading-[1.6] text-text-secondary font-light">
       <p>I’m a frontend-focused engineer who works comfortably across design and engineering.</p>
 
       <p>
@@ -20,5 +18,3 @@ const AboutSectionContent = () => {
     </div>
   );
 };
-
-export default AboutSectionContent;

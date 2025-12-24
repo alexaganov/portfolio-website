@@ -17,7 +17,7 @@ const ExperienceSectionContent = () => {
   );
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col -mt-3.5">
       {resume.experience.map((experience) => {
         const Icon = getCompanyLogoById(experience.id) || NoImage;
         const formattedStartedAt = formatDate(experience.startedAt, 'MMM yyyy');

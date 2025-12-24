@@ -1,13 +1,13 @@
-import clsx from 'clsx';
 import React, { type ComponentPropsWithRef } from 'react';
 
 import { ArrowUp } from '@/components/icons/mono/ArrowUp';
+import { cn } from '@/utils/class-name';
 
-import { useSectionNav } from './SectionNavProvider';
+import { useSectionNav } from './sections/SectionNavProvider';
 
 type MainNavMobileProps = ComponentPropsWithRef<'div'> & {};
 
-const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
+export const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
   const { activeId, sections } = useSectionNav();
   const activeSectionIndex = sections.findIndex((section) => section.id === activeId);
   const activeSection = activeSectionIndex !== -1 ? sections[activeSectionIndex] : null;
@@ -15,9 +15,9 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
   const translateX = hasActiveSection ? (activeSectionIndex / sections.length) * 100 : 0;
 
   return (
-    <div className={clsx('flex gap-2', className)} {...props}>
+    <div className={cn('flex gap-2', className)} {...props}>
       <nav
-        className="rounded-full overflow-hidden bg-bg-tertiary/50 backdrop-blur-xs flex-1 p-1.5"
+        className="rounded-full overflow-hidden bg-bg-tertiary/50 backdrop-blur-md flex-1 p-1.5"
         aria-label="Main navigation"
       >
         <div className="relative rounded-full overflow-hidden h-full">
@@ -25,7 +25,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
             style={{
               transform: `translateX(${translateX}%)`,
             }}
-            className={clsx(
+            className={cn(
               'h-full w-full flex transition-all duration-300 ease-in-out absolute left-0 top-0',
               {
                 'opacity-0': !hasActiveSection,
@@ -45,7 +45,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
               const isActive = activeId === id;
 
               return (
-                <li key={id} className={clsx('flex flex-1')}>
+                <li key={id} className={cn('flex flex-1')}>
                   <a
                     onClick={(event) => {
                       event.preventDefault();
@@ -53,7 +53,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                       document.getElementById(id)?.scrollIntoView();
                     }}
                     href={`#${id}`}
-                    className={clsx(
+                    className={cn(
                       'flex h-full items-center justify-center text-center w-full font-mono text-xs uppercase transition-colors hover:text-text-primary',
                       {
                         'text-text-primary': isActive,
@@ -61,7 +61,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
                       },
                     )}
                   >
-                    <span className="sm:hidden flex items-center justify-center">
+                    <span aria-label={name} className="sm:hidden flex items-center justify-center">
                       <Icon strokeWidth={1.5} className="size-5" />
                     </span>
                     {/* {shortName && (
@@ -87,7 +87,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
         }}
         aria-label={activeSection ? 'Scroll to the top' : 'Scroll to the next section'}
         href="#"
-        className={clsx(
+        className={cn(
           'aspect-square h-14 items-center justify-center ease-in-out flex shrink-0 rounded-full backdrop-blur-xs',
           {
             'text-text-primary bg-bg-quaternary/80': hasActiveSection,
@@ -97,7 +97,7 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
       >
         <ArrowUp
           strokeWidth={1.5}
-          className={clsx('size-5 transition-all', {
+          className={cn('size-5 transition-all', {
             '-rotate-180': !hasActiveSection,
           })}
         />
@@ -105,5 +105,3 @@ const MainNavMobile = ({ className, ...props }: MainNavMobileProps) => {
     </div>
   );
 };
-
-export default MainNavMobile;

@@ -7,7 +7,7 @@ import { Github } from '@/components/icons/mono/Github';
 import { resume } from '@/data';
 
 import { ContactsNav } from './ContactsNav';
-import HomePageSections from './HomePageSections';
+import { HomePageSections } from './HomePageSections';
 
 type HomeSecondaryContentProps = ComponentProps<'div'>;
 
@@ -21,11 +21,11 @@ export const HomeSecondaryContent = ({ className, ...props }: HomeSecondaryConte
         <div className="h-34 bg-liner-to-t from-transparent to-bg-secondary" />
       </div>
 
-      <div className="pb-2 lg:pt-[calc((100vh-820px)/2)] max-w-150 lg:mr-auto lg:pb-[calc((100vh-820px)/2+64px)] px-5 md:px-10">
+      <div className="pb-2 lg:pt-[calc((100vh-var(--spacing-content-height))/2)] max-w-150 lg:mr-auto lg:pb-[calc((100vh-820px)/2+64px)] px-5 md:px-10">
         <HomePageSections sectionClassName="pt-20 lg:pt-36 lg:scroll-mt-[calc((100vh-820px)/2)]" />
 
         <footer className="mt-20 relative z-1 flex items-center lg:items-end flex-col gap-12">
-          <div className="lg:hidden flex flex-col gap-4 items-center">
+          <div className="lg:hidden flex flex-col gap-3 items-center">
             <ContactsNav />
             <CopyButton value={resume.email} />
           </div>

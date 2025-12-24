@@ -37,6 +37,8 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
       return;
     }
 
+    history.scrollRestoration = 'manual';
+
     const primaryContentTimeline = gsap.timeline({
       paused: true,
     });
@@ -54,8 +56,8 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
       {
         opacity: 1,
         yPercent: 0,
+        stagger: 0.2,
         duration: 1,
-        stagger: 0.3,
       },
     );
 
@@ -78,7 +80,7 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
     );
 
     const rootTimeline = gsap.timeline({
-      delay: 0.2,
+      delay: 0.3,
       paused: true,
       smoothChildTiming: true,
     });
@@ -96,7 +98,7 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
           duration: secondaryItemsTimeline.duration(),
           ease: 'power4.out',
         },
-        '-=1.4',
+        '-=1',
       );
 
     const isDesktop = matchMedia('(min-width: 1024px)').matches;
@@ -110,6 +112,21 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
         },
         {
           x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power4.out',
+        },
+        '<',
+      );
+    } else {
+      rootTimeline.fromTo(
+        '[data-gsap-target="content"]',
+        {
+          y: 10,
+          opacity: 0,
+        },
+        {
+          y: 0,
           opacity: 1,
           duration: 0.8,
           ease: 'power4.out',
