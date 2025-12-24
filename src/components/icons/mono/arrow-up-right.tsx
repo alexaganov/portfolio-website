@@ -1,4 +1,4 @@
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from 'react';
 export const ArrowUpRight = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg viewBox="0 0 20 20" fill="none" {...props}>

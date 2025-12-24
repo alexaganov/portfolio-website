@@ -1,12 +1,10 @@
-import { Context, createContext, use } from "react";
+import { type Context, createContext, use } from 'react';
 
 const defaultValue = undefined;
 
 type DefaultValue = typeof defaultValue;
 
-export const createSafeContext = <ContextValue>(): Context<
-  ContextValue | DefaultValue
-> => {
+export const createSafeContext = <ContextValue>(): Context<ContextValue | DefaultValue> => {
   return createContext<ContextValue | DefaultValue>(defaultValue);
 };
 
