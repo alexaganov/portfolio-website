@@ -5,7 +5,6 @@ import React from 'react';
 import { Briefcase } from '@/components/icons/mono/Briefcase';
 import { Star } from '@/components/icons/mono/Star';
 import { User } from '@/components/icons/mono/User';
-import { usePageAnimation } from '@/providers/PageAnimationProvider';
 
 import AboutSectionContent from './AboutSectionContent';
 import ExperienceSectionContent from './ExperienceSectionContent';
@@ -37,16 +36,9 @@ const sections: SectionNavSection[] = [
 ];
 
 export const HomePage = () => {
-  const pageAnimation = usePageAnimation();
-
   return (
     <SectionNavProvider sections={sections}>
-      <main
-        className={clsx('relative overflow-clip lg:grid lg:grid-cols-2', {
-          'gsap-hide-items': pageAnimation.isPlaying,
-          'h-screen overflow-hidden': pageAnimation.isPlaying,
-        })}
-      >
+      <main className={clsx('relative overflow-clip lg:grid lg:grid-cols-2')}>
         <header
           id="header"
           className={clsx(
@@ -60,10 +52,7 @@ export const HomePage = () => {
           />
         </header>
 
-        <HomeSecondaryContent
-          data-gsap-target="content"
-          className="gsap-item overflow-hidden max-lg:pb-24"
-        />
+        <HomeSecondaryContent data-gsap-target="content" className="overflow-hidden max-lg:pb-24" />
       </main>
 
       <div className="fixed z-10 bottom-0 w-full h-24 flex items-center lg:hidden">
@@ -71,7 +60,7 @@ export const HomePage = () => {
 
         <MainNavMobile
           data-gsap-target="secondary"
-          className="relative gsap-item w-full max-w-150 px-5 md:px-10 mx-auto"
+          className="relative w-full max-w-150 px-5 md:px-10 mx-auto"
         />
       </div>
     </SectionNavProvider>

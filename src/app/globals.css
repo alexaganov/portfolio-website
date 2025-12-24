@@ -286,10 +286,6 @@
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%);
   }
 
-  .gsap-hide-items .gsap-item {
-    opacity: 0;
-  }
-
   .prose {
     line-height: 1.75;
     font-size: 14px;

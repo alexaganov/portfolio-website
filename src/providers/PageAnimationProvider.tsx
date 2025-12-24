@@ -41,6 +41,10 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
       paused: true,
     });
 
+    primaryContentTimeline.set('[data-gsap-target="overlay"]', {
+      display: 'none',
+    });
+
     primaryContentTimeline.fromTo(
       ['[data-gsap-target="title-word"], [data-gsap-target="subtitle-word"]'],
       {
@@ -132,5 +136,10 @@ export const PageAnimationProvider = ({ children }: PageAnimationProviderProps) 
     };
   }, [isPlaying]);
 
-  return <Context value={value}>{children}</Context>;
+  return (
+    <Context value={value}>
+      {children}
+      <div data-gsap-target="overlay" className="fixed inset-0 bg-bg-primary z-10" />
+    </Context>
+  );
 };

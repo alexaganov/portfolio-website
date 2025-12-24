@@ -19,7 +19,7 @@ const ExperienceTag = ({ experience }: { experience: ResumeExperience }) => {
       style={{
         color: experience.company.brandColor,
       }}
-      className="gsap-item rounded-full inline-flex font-mono gap-1.5 select-none text-current/0 border-current/40 items-center border px-2.5 py-1 min-h-7 text-xs"
+      className="rounded-full inline-flex font-mono gap-1.5 select-none text-current/0 border-current/40 items-center border px-2.5 py-1 min-h-7 text-xs"
     >
       {Icon && (
         // eslint-disable-next-line react-hooks/static-components
@@ -44,7 +44,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
             {resume.isAvailableForHire && (
               <span
                 data-gsap-target="secondary"
-                className="gsap-item rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success/30 px-2.5 py-1 min-h-7 text-xs"
+                className="rounded-full inline-flex font-mono gap-1.5 select-none items-center border text-success border-success/30 px-2.5 py-1 min-h-7 text-xs"
               >
                 <span className="relative flex text-success h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
@@ -67,7 +67,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
                 <span
                   data-gsap-target="title-word"
                   key={word}
-                  className="gsap-item inline-block whitespace-pre"
+                  className="inline-block whitespace-pre"
                 >
                   {word}
                   {!isLast && ' '}
@@ -86,7 +86,7 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
                 <span
                   data-gsap-target="subtitle-word"
                   key={word}
-                  className="gsap-item inline-block whitespace-pre"
+                  className="inline-block whitespace-pre"
                 >
                   {word}
                   {!isLast && ' '}
@@ -99,23 +99,23 @@ export const HomePrimaryContent = ({ className, ...props }: HomePrimaryContentPr
         <div className="mb-4">
           <p
             data-gsap-target="secondary"
-            className="gsap-item leading-[1.75] text-text-secondary font-light text-balance"
+            className="leading-[1.75] text-text-secondary font-light text-balance"
             dangerouslySetInnerHTML={{ __html: resume.shortDescription }}
           />
         </div>
 
         <div className="flex items-start flex-col gap-y-4 gap-x-8">
-          <ContactsNav className="gsap-item" data-gsap-target="secondary" />
+          <ContactsNav data-gsap-target="secondary" />
 
-          <CopyButton className="gsap-item" data-gsap-target="secondary" value={resume.email} />
+          <CopyButton data-gsap-target="secondary" value={resume.email} />
         </div>
       </div>
 
       <div className="max-lg:hidden my-auto">
-        <MainNavDesktop className="gsap-item" data-gsap-target="secondary" />
+        <MainNavDesktop data-gsap-target="secondary" />
       </div>
 
-      <div className="gsap-item" data-gsap-target="secondary">
+      <div data-gsap-target="secondary">
         <ExternalLink href={resume.resumeUrl} className="font-mono text-sm">
           View Resume to Learn More
         </ExternalLink>
