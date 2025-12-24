@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import React, { type ComponentProps } from 'react';
 
-import CopyButton from '@/components/common/CopyButton';
-import { ExternalLink } from '@/components/common/ExternalLink';
-import { Github } from '@/components/icons/mono/Github';
+import CopyButton from '@/components/common/copy-button';
+import { ExternalLink } from '@/components/common/external-link';
+import { Github } from '@/components/icons/mono/github';
 import { resume } from '@/data';
 
-import { ContactsNav } from './ContactsNav';
-import { HomePageSections } from './HomePageSections';
+import { ContactsNav } from './contacts-nav';
+import { HomePageSections } from './home-page-sections';
 
 type HomeSecondaryContentProps = ComponentProps<'div'>;
 

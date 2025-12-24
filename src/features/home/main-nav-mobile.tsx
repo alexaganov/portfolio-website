@@ -1,9 +1,9 @@
 import React, { type ComponentPropsWithRef } from 'react';
 
-import { ArrowUp } from '@/components/icons/mono/ArrowUp';
+import { ArrowUp } from '@/components/icons/mono/arrow-up';
 import { cn } from '@/utils/class-name';
 
-import { useSectionNav } from './sections/SectionNavProvider';
+import { useSectionNav } from './sections/section-nav-provider';
 
 type MainNavMobileProps = ComponentPropsWithRef<'div'> & {};
 

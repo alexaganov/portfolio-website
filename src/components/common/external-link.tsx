@@ -2,7 +2,7 @@ import React, { type ComponentProps } from 'react';
 
 import { cn } from '@/utils/class-name';
 
-import { ExternalLink as ExternalLinkIcon } from '../icons/mono/ExternalLink';
+import { ExternalLink as ExternalLinkIcon } from '../icons/mono/external-link';
 
 type ExternalLinkProps = ComponentProps<'a'> & {
   Icon?: typeof ExternalLinkIcon;

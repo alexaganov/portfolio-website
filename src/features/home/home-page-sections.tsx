@@ -5,7 +5,7 @@ import React, { type ComponentPropsWithRef, useEffect, useRef } from 'react';
 import { cn } from '@/utils/class-name';
 import { isFullyInView } from '@/utils/dom';
 
-import { useSectionNav } from './sections/SectionNavProvider';
+import { useSectionNav } from './sections/section-nav-provider';
 
 type HomePageSectionsProps = ComponentPropsWithRef<'div'> & {
   sectionClassName?: string;

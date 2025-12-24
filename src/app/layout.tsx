@@ -5,7 +5,7 @@ import { Kode_Mono, Work_Sans } from 'next/font/google';
 import { type ProfilePage, type WithContext } from 'schema-dts';
 
 import { resume } from '@/data';
-import { PageAnimationProvider } from '@/providers/PageAnimationProvider';
+import { PageAnimationProvider } from '@/providers/page-animation-provider';
 
 import type { Metadata } from 'next';
 

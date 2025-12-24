@@ -1,12 +1,12 @@
 import React, { type ComponentProps } from 'react';
 
-import CopyButton from '@/components/common/CopyButton';
-import { ExternalLink } from '@/components/common/ExternalLink';
+import CopyButton from '@/components/common/copy-button';
+import { ExternalLink } from '@/components/common/external-link';
 import { getCompanyLogoById, resume, type ResumeExperience } from '@/data';
 import { cn } from '@/utils/class-name';
 
-import { ContactsNav } from './ContactsNav';
-import { MainNavDesktop } from './MainNavDesktop';
+import { ContactsNav } from './contacts-nav';
+import { MainNavDesktop } from './main-nav-desktop';
 
 type HomePrimaryContentProps = ComponentProps<'div'>;
 

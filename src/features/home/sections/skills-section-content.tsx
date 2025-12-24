@@ -5,7 +5,7 @@ import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { resume, type ResumeDataTechnology } from '@/data';
 import { cn } from '@/utils/class-name';
 
-import { type SkillListItem, SkillsList } from './SkillsList';
+import { type SkillListItem, SkillsList } from './skills-list';
 
 gsap.registerPlugin(Flip);
 

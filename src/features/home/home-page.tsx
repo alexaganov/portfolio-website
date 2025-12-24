@@ -1,18 +1,18 @@
 'use client';
 import React from 'react';
 
-import { Briefcase } from '@/components/icons/mono/Briefcase';
-import { Star } from '@/components/icons/mono/Star';
-import { User } from '@/components/icons/mono/User';
+import { Briefcase } from '@/components/icons/mono/briefcase';
+import { Star } from '@/components/icons/mono/star';
+import { User } from '@/components/icons/mono/user';
 import { cn } from '@/utils/class-name';
 
-import { HomePrimaryContent } from './HomePrimaryContent';
-import { HomeSecondaryContent } from './HomeSecondaryContent';
-import { MainNavMobile } from './MainNavMobile';
+import { HomePrimaryContent } from './home-primary-content';
+import { HomeSecondaryContent } from './home-secondary-content';
+import { MainNavMobile } from './main-nav-mobile';
 import { AboutSectionContent } from './sections/about-section-content';
-import ExperienceSectionContent from './sections/ExperienceSectionContent';
-import SectionNavProvider, { type SectionNavSection } from './sections/SectionNavProvider';
-import { SkillsSectionContent } from './sections/SkillsSectionContent';
+import ExperienceSectionContent from './sections/experience-section-content';
+import SectionNavProvider, { type SectionNavSection } from './sections/section-nav-provider';
+import { SkillsSectionContent } from './sections/skills-section-content';
 
 const sections: SectionNavSection[] = [
   {
@@ -66,5 +66,3 @@ export const HomePage = () => {
     </SectionNavProvider>
   );
 };
-
-export default HomePage;

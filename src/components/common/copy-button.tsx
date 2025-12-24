@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { type ComponentProps } from 'react';
 
-import useCopyToClipboard from '@/hooks/useCopyToClipboard';
+import useCopyToClipboard from '@/hooks/use-copy-to-clipboard';
 
-import { Check } from '../icons/mono/Check';
-import { Copy } from '../icons/mono/Copy';
+import { Check } from '../icons/mono/check';
+import { Copy } from '../icons/mono/copy';
 
 interface CopyButtonProps extends ComponentProps<'button'> {
   value: string;

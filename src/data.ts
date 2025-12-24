@@ -1,8 +1,8 @@
-import { HomeWork } from './components/icons/mono/HomeWork';
-import { SagirovLogo } from './components/icons/mono/SagirovLogo';
-import { FojinLogo } from './components/icons/poly/FojinLogo';
-import { MagicSquareLogo } from './components/icons/poly/MagicSquareLogo';
-import { SalmonLogo } from './components/icons/poly/SalmonLogo';
+import { HomeWork } from './components/icons/mono/home-work';
+import { SagirovLogo } from './components/icons/mono/sagirov-logo';
+import { FojinLogo } from './components/icons/poly/fojin-logo';
+import { MagicSquareLogo } from './components/icons/poly/magic-square-logo';
+import { SalmonLogo } from './components/icons/poly/salmon-logo';
 
 export type ResumeDataTechnology = {
   id: string;

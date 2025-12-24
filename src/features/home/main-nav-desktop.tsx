@@ -3,8 +3,8 @@ import React, { type ComponentPropsWithRef } from 'react';
 
 import { cn } from '@/utils/class-name';
 
-import { useSectionNav } from './sections/SectionNavProvider';
-import { useSlinkyNavIndicator } from '../../hooks/useSlinkyNavIndicator';
+import { useSectionNav } from './sections/section-nav-provider';
+import { useSlinkyNavIndicator } from '../../hooks/use-slinky-nav-indicator';
 
 type MainNavDesktopProps = ComponentPropsWithRef<'nav'> & {};
 

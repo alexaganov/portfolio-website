@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ExternalLink } from '@/components/common/ExternalLink';
-import { NoImage } from '@/components/icons/mono/NoImage';
+import { ExternalLink } from '@/components/common/external-link';
+import { NoImage } from '@/components/icons/mono/no-image';
 import { getCompanyLogoById, resume, type ResumeData } from '@/data';
 import { cn } from '@/utils/class-name';
 import { formatDate } from '@/utils/date';

@@ -1,10 +1,10 @@
 import React, { type ComponentProps, type ComponentType } from 'react';
 
-import { EmailFilled } from '@/components/icons/mono/EmailFilled';
-import { GithubFilled } from '@/components/icons/mono/GithubFilled';
-import { Leetcode } from '@/components/icons/mono/Leetcode';
-import { LinkedinBold } from '@/components/icons/mono/LinkedinBold';
-import { TelegramFilled } from '@/components/icons/mono/TelegramFilled';
+import { EmailFilled } from '@/components/icons/mono/email-filled';
+import { GithubFilled } from '@/components/icons/mono/github-filled';
+import { Leetcode } from '@/components/icons/mono/leetcode';
+import { LinkedinBold } from '@/components/icons/mono/linkedin-bold';
+import { TelegramFilled } from '@/components/icons/mono/telegram-filled';
 import { resume } from '@/data';
 
 export type ContactsNavProps = ComponentProps<'nav'>;
