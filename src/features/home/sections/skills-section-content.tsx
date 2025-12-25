@@ -133,6 +133,9 @@ export const SkillsSectionContent = () => {
 
   return (
     <div ref={containerRef} className="flex flex-col">
+      <p className="leading-[1.6] text-text-secondary font-light text-balance mb-5">
+        Tools and technologies I’ve worked with.
+      </p>
       <div className="flex sticky top-0 z-1 bg-bg-secondary/50 -mx-5 px-5 rounded-b-xl lg:-mx-10 lg:px-10 backdrop-blur-md flex-col -mt-2.5 py-3.5 ">
         <span className={cn('text-xs text-text-tertiary self-start font-mono mb-2')}>Sort By:</span>
 
