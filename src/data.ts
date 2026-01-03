@@ -349,6 +349,16 @@ export const resume: ResumeData = {
       tags: ['web3'],
     },
     {
+      id: 'chat-gpt',
+      name: 'ChatGPT',
+      tags: ['ai'],
+    },
+    {
+      id: 'codex',
+      name: 'Codex',
+      tags: ['ai'],
+    },
+    {
       id: 'web3js',
       name: 'Web3.js',
       description: 'JavaScript library for Ethereum',
